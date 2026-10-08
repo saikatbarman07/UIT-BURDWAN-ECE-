@@ -1,0 +1,1633 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>UIT Burdwan — Department of ECE</title>
+
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f7fb;
+        --surface: #fff;
+        --surface2: #eef2f8;
+        --text: #111827;
+        --muted: #667085;
+        --line: #e4e8ef;
+        --accent: #2563eb;
+        --accent2: #7c3aed;
+        --shadow: 0 18px 50px rgba(15, 23, 42, 0.1);
+      }
+
+      body.dark {
+        color-scheme: dark;
+        --bg: #0b1020;
+        --surface: #121a2d;
+        --surface2: #19233a;
+        --text: #f4f7ff;
+        --muted: #a8b2c7;
+        --line: #28344d;
+        --accent: #6ea8ff;
+        --accent2: #a98bff;
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          sans-serif;
+      }
+
+      .app {
+        min-height: 100vh;
+        background: var(--bg);
+      }
+
+      .wrap {
+        width: min(1120px, calc(100% - 32px));
+        margin: auto;
+      }
+
+      .top {
+        padding: 22px 0 0;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+
+      .mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 13px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        display: grid;
+        place-items: center;
+        color: white;
+        font-weight: 900;
+      }
+
+      .navlinks {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+
+      .navlinks button,
+      .ghost {
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--text);
+        padding: 10px 14px;
+        border-radius: 11px;
+        cursor: pointer;
+      }
+
+      .navlinks button:hover,
+      .ghost:hover {
+        border-color: var(--accent);
+      }
+
+      .hero {
+        margin-top: 28px;
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        padding: 38px;
+        background: linear-gradient(135deg, var(--surface), var(--surface2));
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero:after {
+        content: '';
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        opacity: 0.12;
+        right: -80px;
+        top: -90px;
+      }
+
+      .eyebrow {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--accent);
+        font-weight: 800;
+      }
+
+      .hero h1 {
+        font-size: clamp(32px, 6vw, 62px);
+        line-height: 0.98;
+        margin: 10px 0 7px;
+        letter-spacing: -0.045em;
+      }
+
+      .hero h2 {
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(17px, 3vw, 25px);
+        font-weight: 650;
+      }
+
+      .hero p {
+        max-width: 680px;
+        color: var(--muted);
+        line-height: 1.65;
+        margin: 18px 0 0;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .primary {
+        border: 0;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        color: #fff;
+        padding: 12px 17px;
+        border-radius: 12px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .section {
+        padding: 34px 0;
+      }
+
+      .sectionhead {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .section h3 {
+        margin: 0;
+        font-size: 23px;
+      }
+
+      .sectionhead p {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .search,
+      .field {
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--text);
+        border-radius: 11px;
+        padding: 10px 12px;
+        min-width: 220px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 19px;
+        box-shadow: 0 7px 24px rgba(15, 23, 42, 0.05);
+      }
+
+      .cardtop {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background: var(--surface2);
+        display: grid;
+        place-items: center;
+      }
+
+      .tag {
+        font-size: 11px;
+        color: var(--accent);
+        font-weight: 800;
+        background: var(--surface2);
+        padding: 6px 8px;
+        border-radius: 99px;
+        height: max-content;
+      }
+
+      .card h4 {
+        margin: 15px 0 6px;
+        font-size: 16px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .resource {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+      }
+
+      .resource .icon {
+        flex: 0 0 auto;
+      }
+
+      .resourcebody {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .resourcebody strong {
+        display: block;
+        font-size: 14px;
+      }
+
+      .resourcebody span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 3px;
+      }
+
+      .download {
+        margin-left: auto;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--text);
+        border-radius: 10px;
+        padding: 8px 10px;
+        cursor: pointer;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .notice {
+        display: grid;
+        grid-template-columns: 70px 1fr auto;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .date {
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        text-align: center;
+        padding: 9px;
+        background: var(--surface2);
+      }
+
+      .date b {
+        display: block;
+        font-size: 21px;
+      }
+
+      .date small {
+        color: var(--muted);
+        font-size: 10px;
+        text-transform: uppercase;
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        padding: 25px 0 35px;
+        color: var(--muted);
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .mobilebar {
+        display: none;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* ADMIN */
+
+      .admin-panel {
+        display: none;
+      }
+
+      .admin-panel.open {
+        display: block;
+      }
+
+      .admin-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 14px;
+      }
+
+      .admin-form {
+        display: grid;
+        gap: 10px;
+      }
+
+      .admin-form textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+
+      .field {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .admin-list {
+        display: grid;
+        gap: 9px;
+        margin-top: 14px;
+      }
+
+      .admin-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+        padding: 11px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--surface2);
+      }
+
+      .admin-item small {
+        color: var(--muted);
+      }
+
+      .danger {
+        border: 1px solid #dc2626;
+        background: transparent;
+        color: #dc2626;
+        padding: 8px 10px;
+        border-radius: 9px;
+        cursor: pointer;
+      }
+
+      .status {
+        font-size: 12px;
+        color: var(--muted);
+        min-height: 18px;
+      }
+
+      .default-admin-remove {
+        display: none;
+        margin-top: 12px;
+      }
+
+      .admin-panel.open ~ #updates .default-admin-remove {
+        display: block;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 780px) {
+        .navlinks {
+          display: flex;
+        }
+
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .sectionhead {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .search {
+          min-width: 0;
+          width: 100%;
+        }
+
+        .admin-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 520px) {
+        body {
+          padding-bottom: 72px;
+        }
+
+        .wrap {
+          width: min(100% - 22px, 1120px);
+        }
+
+        .top {
+          padding-top: 14px;
+        }
+
+        .navlinks {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .navlinks button {
+          width: 100%;
+        }
+
+        .hero {
+          padding: 26px 20px;
+          border-radius: 20px;
+          margin-top: 18px;
+        }
+
+        .hero h1 {
+          font-size: clamp(34px, 12vw, 50px);
+        }
+
+        .hero p {
+          font-size: 14px;
+        }
+
+        .actions {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        .actions button {
+          width: 100%;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .notice {
+          grid-template-columns: 55px 1fr;
+          gap: 10px;
+        }
+
+        .notice .tag {
+          display: none;
+        }
+
+        .footer {
+          flex-direction: column;
+          padding-bottom: 20px;
+        }
+
+        .mobilebar {
+          position: fixed;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          bottom: 10px;
+          left: 10px;
+          right: 10px;
+          z-index: 20;
+          background: var(--surface);
+          border: 1px solid var(--line);
+          border-radius: 18px;
+          padding: 7px;
+          box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+          backdrop-filter: blur(14px);
+        }
+
+        .mobilebar button {
+          border: 0;
+          background: transparent;
+          color: var(--muted);
+          font-size: 11px;
+          font-weight: 750;
+          padding: 7px 2px;
+          border-radius: 12px;
+        }
+
+        .mobilebar span {
+          display: block;
+          font-size: 17px;
+          margin-bottom: 2px;
+        }
+      }
+    </style>
+    <style>
+      .auth-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.55);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .auth-modal.open {
+        display: flex;
+      }
+      .auth-box {
+        width: min(420px, 100%);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 22px;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+      }
+      .auth-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 12px;
+      }
+      .auth-box h3 {
+        margin: 0 0 6px;
+      }
+      .auth-box p {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .auth-close {
+        border: 0;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 20px;
+        float: right;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="wrap">
+        <header class="top">
+          <nav class="nav">
+            <div class="navlinks">
+              <button onclick="scrollToId('updates')">Updates</button>
+
+              <button onclick="scrollToId('resources')">Resources</button>
+
+              <button onclick="scrollToId('notices')">Notices</button>
+
+              <button onclick="toggleTheme()" id="themeToggle">🌙 Dark</button>
+
+              <button onclick="adminInfo()">🔐 Admin</button>
+            </div>
+          </nav>
+        </header>
+
+        <!-- HERO -->
+
+        <section class="hero">
+          <div class="eyebrow">Student Information Portal</div>
+
+          <h1>UIT BURDWAN</h1>
+
+          <h2>DEPARTMENT OF ECE</h2>
+
+          <p>
+            One place for your department updates — notices, PDFs, study materials, routines and
+            everything students need to stay updated.
+          </p>
+
+          <div class="actions">
+            <button class="primary" onclick="scrollToId('updates')">View latest updates →</button>
+
+            <button class="ghost" onclick="scrollToId('resources')">Browse resources</button>
+          </div>
+        </section>
+
+        <!-- ADMIN PANEL -->
+
+        <section class="section admin-panel" id="adminPanel">
+          <div class="sectionhead">
+            <div>
+              <h3>Admin control centre</h3>
+
+              <p>Manage updates, notices and department resource links from here.</p>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span class="tag" id="roleBadge"> OWNER </span>
+              <button class="ghost" id="signOutButton" onclick="logoutAdmin()">Sign out</button>
+            </div>
+          </div>
+
+          <div class="admin-grid">
+            <!-- PUBLISH UPDATE -->
+
+            <div class="card">
+              <div class="admin-form">
+                <input class="field" id="postTitle" placeholder="Post title" />
+
+                <input class="field" id="postCategory" placeholder="Category e.g. NOTICE" />
+
+                <textarea class="field" id="postText" placeholder="Write the update..."></textarea>
+
+                <input
+                  class="field"
+                  id="postLink"
+                  type="url"
+                  placeholder="Paste Google Drive share link"
+                />
+
+                <button class="primary" onclick="publishPost()">Publish update</button>
+
+                <div class="status" id="adminStatus"></div>
+              </div>
+            </div>
+
+            <!-- MANAGE ADMINS -->
+
+            <div class="card" id="manageAdminsCard">
+              <h4 style="margin-top: 0">Manage admins</h4>
+
+              <p>Add trusted people who can publish content. The owner remains the highest role.</p>
+
+              <div class="admin-form">
+                <input class="field" id="adminName" placeholder="Admin name" />
+
+                <input
+                  class="field"
+                  id="adminEmail"
+                  type="email"
+                  placeholder="Existing Supabase account email"
+                />
+
+                <button class="ghost" onclick="addAdmin()">Add admin</button>
+              </div>
+
+              <div class="admin-list" id="adminList"></div>
+            </div>
+          </div>
+
+          <!-- RESOURCES -->
+
+          <div class="admin-grid" style="margin-top: 14px">
+            <div class="card">
+              <h4 style="margin-top: 0">Department resources</h4>
+
+              <p>Change the Google Drive link for each main resource.</p>
+
+              <div class="admin-form">
+                <input
+                  class="field"
+                  id="noticeResourceLink"
+                  type="url"
+                  placeholder="Department Notices Google Drive link"
+                />
+
+                <input
+                  class="field"
+                  id="studyResourceLink"
+                  type="url"
+                  placeholder="Study Materials Google Drive link"
+                />
+
+                <input
+                  class="field"
+                  id="routineResourceLink"
+                  type="url"
+                  placeholder="Department Routine Google Drive link"
+                />
+
+                <button class="ghost" onclick="saveResources()">Save resource links</button>
+
+                <div class="status" id="resourceStatus"></div>
+              </div>
+            </div>
+
+            <!-- MULTIPLE STUDY LINKS -->
+
+            <div class="card">
+              <h4 style="margin-top: 0">Study material links</h4>
+
+              <p>Add as many separate study links as you want.</p>
+
+              <div class="admin-form">
+                <input
+                  class="field"
+                  id="studyLinkName"
+                  placeholder="Link name e.g. Engineering Mathematics"
+                />
+
+                <input
+                  class="field"
+                  id="studyLinkUrl"
+                  type="url"
+                  placeholder="Paste Google Drive link"
+                />
+
+                <button class="ghost" onclick="addStudyLink()">＋ Add study link</button>
+
+                <div class="admin-list" id="studyLinkAdminList"></div>
+
+                <div class="status" id="studyLinkStatus"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NOTICE MANAGEMENT -->
+
+          <div class="admin-grid" style="margin-top: 14px">
+            <div class="card">
+              <h4 style="margin-top: 0">Notice board</h4>
+
+              <div class="admin-form">
+                <input class="field" id="noticeTitle" placeholder="Notice title" />
+
+                <textarea class="field" id="noticeText" placeholder="Notice description"></textarea>
+
+                <input
+                  class="field"
+                  id="noticeLink"
+                  type="url"
+                  placeholder="Optional Google Drive link"
+                />
+
+                <button class="ghost" onclick="addNotice()">Add notice</button>
+
+                <div class="status" id="noticeStatus"></div>
+              </div>
+
+              <div class="admin-list" id="noticeAdminList"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- UPDATES -->
+
+        <section class="section" id="updates">
+          <div class="sectionhead">
+            <div>
+              <h3>Latest updates</h3>
+
+              <p>Recent information for ECE students.</p>
+            </div>
+
+            <input
+              class="search"
+              id="search"
+              placeholder="Search updates..."
+              oninput="filterCards()"
+            />
+          </div>
+
+          <div class="grid" id="updateGrid">
+            <article class="card searchable default-update" data-default-id="welcome">
+              <div class="cardtop">
+                <div class="icon">📢</div>
+
+                <span class="tag"> UPDATE </span>
+              </div>
+
+              <h4>Welcome to the ECE Student Hub</h4>
+
+              <p>
+                This portal is the central place for department announcements, documents, study
+                material and important student information.
+              </p>
+
+              <button class="danger default-admin-remove" onclick="removeDefaultUpdate('welcome')">
+                Remove update
+              </button>
+            </article>
+
+            <article class="card searchable default-update" data-default-id="academic">
+              <div class="cardtop">
+                <div class="icon">📅</div>
+
+                <span class="tag"> ACADEMIC </span>
+              </div>
+
+              <h4>Class & examination updates</h4>
+
+              <p>
+                New routines, exam schedules and academic notices can be added here as soon as they
+                are available.
+              </p>
+
+              <button class="danger default-admin-remove" onclick="removeDefaultUpdate('academic')">
+                Remove update
+              </button>
+            </article>
+
+            <article class="card searchable default-update" data-default-id="important">
+              <div class="cardtop">
+                <div class="icon">📌</div>
+
+                <span class="tag"> IMPORTANT </span>
+              </div>
+
+              <h4>Check this section regularly</h4>
+
+              <p>
+                Keep this page bookmarked so you don't miss newly posted notices, PDFs or other
+                department information.
+              </p>
+
+              <button
+                class="danger default-admin-remove"
+                onclick="removeDefaultUpdate('important')"
+              >
+                Remove update
+              </button>
+            </article>
+          </div>
+        </section>
+
+        <!-- RESOURCES -->
+
+        <section class="section" id="resources">
+          <div class="sectionhead">
+            <div>
+              <h3>Resources & documents</h3>
+
+              <p>
+                Department Notices, Study Materials, Department Routine and additional study links.
+              </p>
+            </div>
+
+            <span class="tag"> ADMIN MANAGED </span>
+          </div>
+
+          <div class="grid" id="resourceGrid"></div>
+
+          <div id="studyLinksPublic" style="margin-top: 14px"></div>
+        </section>
+
+        <!-- NOTICE BOARD -->
+
+        <section class="section" id="notices">
+          <div class="sectionhead">
+            <div>
+              <h3>Notice board</h3>
+
+              <p>A quick timeline of important posts.</p>
+            </div>
+          </div>
+
+          <div class="card" id="noticeGrid"></div>
+        </section>
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+          <span> UIT BURDWAN · DEPARTMENT OF ECE </span>
+
+          <span> Student-maintained information portal </span>
+        </footer>
+
+        <!-- MOBILE NAV -->
+
+        <nav class="mobilebar" aria-label="Mobile navigation">
+          <button onclick="scrollToId('updates')">
+            <span>📢</span>
+            Updates
+          </button>
+
+          <button onclick="scrollToId('resources')">
+            <span>📚</span>
+            Resources
+          </button>
+
+          <button onclick="scrollToId('notices')">
+            <span>📌</span>
+            Notices
+          </button>
+
+          <button onclick="toggleTheme()">
+            <span>🌓</span>
+            Theme
+          </button>
+        </nav>
+      </div>
+
+      <!-- ADMIN LOGIN -->
+      <div
+        class="auth-modal"
+        id="loginModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="loginTitle"
+      >
+        <div class="auth-box">
+          <button class="auth-close" onclick="closeLoginModal()" aria-label="Close">×</button>
+          <h3 id="loginTitle">ECE Portal Admin</h3>
+          <p>Sign in with the Supabase account authorized for portal administration.</p>
+          <div class="admin-form">
+            <input
+              class="field"
+              id="loginEmail"
+              type="email"
+              autocomplete="username"
+              placeholder="Admin email"
+            />
+            <input
+              class="field"
+              id="loginPassword"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Password"
+              onkeydown="if (event.key === 'Enter') loginAdmin();"
+            />
+            <div class="status" id="loginStatus"></div>
+          </div>
+          <div class="auth-actions">
+            <button class="ghost" onclick="closeLoginModal()">Cancel</button>
+            <button class="primary" onclick="loginAdmin()">Sign in</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- SINGLE CLEAN JAVASCRIPT -->
+    <!-- ========================================================= -->
+
+    <script>
+      const SUPABASE_URL = 'https://wfdglcviebjtgczsfyzu.supabase.co';
+      const SUPABASE_ANON_KEY = 'sb_publishable_ZfSvpI0xETtNpTImHj5a1A_oEb8xUpc';
+
+      const { createClient } = window.supabase;
+      const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      const THEME_STORE = 'uit_ece_theme';
+      const LEGACY_STORE = 'uit_ece_portal_v1';
+      const MIGRATION_STORE = 'uit_ece_supabase_migrated_v1';
+
+      let currentUser = null;
+      let currentRole = null;
+      let currentAdminName = '';
+      let realtimeChannel = null;
+      let resources = {
+        notice: { id: 'notice', title: 'Department Notices', desc: 'PDF documents', link: '' },
+        study: { id: 'study', title: 'Study Materials', desc: 'Notes & question papers', link: '' },
+        routine: {
+          id: 'routine',
+          title: 'Department Routine',
+          desc: 'Latest routine files',
+          link: '',
+        },
+      };
+      let studyLinks = [];
+      let hiddenDefaults = new Set();
+      let posts = [];
+      let notices = [];
+
+      function esc(value) {
+        return String(value ?? '').replace(
+          /[&<>"']/g,
+          (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]
+        );
+      }
+
+      function validUrl(url) {
+        if (!url) return true;
+        if (url.length > 500 || /\s/.test(url)) return false;
+        try {
+          const u = new URL(url);
+          return (u.protocol === 'http:' || u.protocol === 'https:') && !/\s/.test(u.href);
+        } catch {
+          return false;
+        }
+      }
+
+      function setStatus(id, message, isError = false) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = message;
+        el.style.color = isError ? '#dc2626' : '';
+      }
+
+      function scrollToId(id) {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function applyTheme() {
+        const saved = localStorage.getItem(THEME_STORE) || 'light';
+        document.body.classList.toggle('dark', saved === 'dark');
+        const btn = document.getElementById('themeToggle');
+        if (btn) btn.textContent = saved === 'dark' ? '☀️ Light' : '🌙 Dark';
+      }
+
+      function toggleTheme() {
+        const current = document.body.classList.contains('dark') ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.body.classList.toggle('dark', next === 'dark');
+        localStorage.setItem(THEME_STORE, next);
+        applyTheme();
+      }
+
+      function openLoginModal() {
+        const modal = document.getElementById('loginModal');
+        if (!modal) return;
+        modal.classList.add('open');
+        const email = document.getElementById('loginEmail');
+        if (email) email.focus();
+      }
+
+      function closeLoginModal() {
+        const modal = document.getElementById('loginModal');
+        if (modal) modal.classList.remove('open');
+        setStatus('loginStatus', '');
+      }
+
+      async function adminInfo() {
+        if (!currentUser) {
+          openLoginModal();
+          return;
+        }
+        if (!currentRole) {
+          setStatus('loginStatus', 'This account is not authorized as an ECE portal admin.', true);
+          openLoginModal();
+          return;
+        }
+        const panel = document.getElementById('adminPanel');
+        if (panel) panel.classList.toggle('open');
+        renderAdminState();
+      }
+
+      async function loginAdmin() {
+        const email = document.getElementById('loginEmail')?.value.trim();
+        const password = document.getElementById('loginPassword')?.value;
+        if (!email || !password) {
+          setStatus('loginStatus', 'Enter your email and password.', true);
+          return;
+        }
+        setStatus('loginStatus', 'Signing in…');
+        const { data, error } = await db.auth.signInWithPassword({ email, password });
+        if (error) {
+          setStatus('loginStatus', error.message, true);
+          return;
+        }
+        await loadAuthUser(data.user);
+        if (!currentRole) {
+          await db.auth.signOut();
+          document.getElementById('adminPanel')?.classList.remove('open');
+          renderAdminState();
+          setStatus(
+            'loginStatus',
+            'Login worked, but this account is not an authorized portal admin.',
+            true
+          );
+          return;
+        }
+        closeLoginModal();
+        document.getElementById('adminPanel')?.classList.add('open');
+        renderAdminState();
+        await migrateLegacyDataIfNeeded();
+        await loadAllData();
+      }
+
+      async function logoutAdmin() {
+        await db.auth.signOut();
+        currentUser = null;
+        currentRole = null;
+        currentAdminName = '';
+        document.getElementById('adminPanel')?.classList.remove('open');
+        renderAdminState();
+      }
+
+      async function loadAuthUser(user) {
+        currentUser = user || null;
+        currentRole = null;
+        currentAdminName = '';
+        if (!currentUser) return;
+        const { data, error } = await db
+          .from('admin_users')
+          .select('id,name,role')
+          .eq('id', currentUser.id)
+          .maybeSingle();
+        if (error) {
+          console.error('Admin role lookup failed:', error);
+          currentRole = null;
+          currentAdminName = '';
+          return;
+        }
+        if (data && (data.role === 'owner' || data.role === 'admin')) {
+          currentRole = data.role;
+          currentAdminName = data.name || currentUser.email || 'Admin';
+        }
+      }
+
+      function renderAdminState() {
+        const badge = document.getElementById('roleBadge');
+        const panel = document.getElementById('adminPanel');
+        const adminButton = [...document.querySelectorAll('button')].find((b) =>
+          b.textContent.includes('Admin')
+        );
+        if (badge) badge.textContent = currentRole ? currentRole.toUpperCase() : 'ADMIN';
+        if (adminButton)
+          adminButton.textContent = currentRole
+            ? `🔐 ${currentRole === 'owner' ? 'Owner' : 'Admin'}`
+            : '🔐 Admin';
+        const signout = document.getElementById('signOutButton');
+        if (signout) signout.classList.toggle('hidden', !currentRole);
+        const manageCard = document.getElementById('manageAdminsCard');
+        if (manageCard) manageCard.classList.toggle('hidden', currentRole !== 'owner');
+        const ownerOnly = document.querySelectorAll('.owner-only');
+        ownerOnly.forEach((el) => el.classList.toggle('hidden', currentRole !== 'owner'));
+        if (!currentRole && panel) panel.classList.remove('open');
+      }
+
+      async function loadAllData() {
+        const [postsRes, noticesRes, resourcesRes, linksRes, hiddenRes] = await Promise.all([
+          db.from('posts').select('*').order('created_at', { ascending: false }),
+          db.from('notices').select('*').order('created_at', { ascending: false }),
+          db.from('resources').select('*'),
+          db.from('study_links').select('*').order('created_at', { ascending: false }),
+          db.from('hidden_defaults').select('id,hidden'),
+        ]);
+
+        if (postsRes.error) console.error(postsRes.error);
+        if (noticesRes.error) console.error(noticesRes.error);
+        if (resourcesRes.error) console.error(resourcesRes.error);
+        if (linksRes.error) console.error(linksRes.error);
+        if (hiddenRes.error) console.error(hiddenRes.error);
+
+        posts = postsRes.data || [];
+        notices = noticesRes.data || [];
+        studyLinks = linksRes.data || [];
+        hiddenDefaults = new Set((hiddenRes.data || []).filter((x) => x.hidden).map((x) => x.id));
+
+        for (const key of ['notice', 'study', 'routine']) {
+          const row = (resourcesRes.data || []).find((r) => r.key === key);
+          if (row)
+            resources[key] = {
+              id: key,
+              title: row.title,
+              desc: row.description || '',
+              link: row.link || '',
+            };
+        }
+
+        renderPosts();
+        renderResources();
+        renderNotices();
+        renderStudyLinkAdmin();
+        renderNoticeAdmin();
+        renderResourceInputs();
+        applyDefaultVisibility();
+        if (currentRole) renderAdmins();
+      }
+
+      function renderPosts() {
+        const grid = document.getElementById('updateGrid');
+        if (!grid) return;
+        const defaults = [...grid.querySelectorAll('.default-update')];
+        defaults.forEach((card) => {
+          const id = card.dataset.defaultId;
+          card.style.display = hiddenDefaults.has(id) ? 'none' : '';
+        });
+
+        grid.querySelectorAll("[data-admin-post='1']").forEach((el) => el.remove());
+        posts.forEach((post) => {
+          const article = document.createElement('article');
+          article.className = 'card searchable';
+          article.dataset.adminPost = '1';
+          article.innerHTML = `
+      <div class="cardtop"><div class="icon">📢</div><span class="tag">${esc(post.category || 'UPDATE')}</span></div>
+      <h4>${esc(post.title)}</h4>
+      <p>${esc(post.body || '')}</p>
+      ${post.link ? `<a class="download" href="${esc(post.link)}" target="_blank" rel="noopener">Open resource →</a>` : ''}
+      ${currentRole ? `<button class="danger" style="margin-top:12px" onclick="deletePost('${esc(post.id)}')">Delete</button>` : ''}
+    `;
+          grid.appendChild(article);
+        });
+        filterCards();
+      }
+
+      async function publishPost() {
+        if (!currentRole) return openLoginModal();
+        const title = document.getElementById('postTitle')?.value.trim();
+        const category = document.getElementById('postCategory')?.value.trim() || 'UPDATE';
+        const body = document.getElementById('postText')?.value.trim();
+        const link = document.getElementById('postLink')?.value.trim() || null;
+        if (!title || !body)
+          return setStatus('adminStatus', 'Add a title and update text first.', true);
+        if (!validUrl(link))
+          return setStatus('adminStatus', 'Please enter a valid http/https link.', true);
+        setStatus('adminStatus', 'Publishing…');
+        const { error } = await db
+          .from('posts')
+          .insert({ title, category, body, link, published: true, created_by: currentUser.id });
+        if (error) return setStatus('adminStatus', error.message, true);
+        ['postTitle', 'postCategory', 'postText', 'postLink'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.value = '';
+        });
+        setStatus('adminStatus', 'Update published.');
+        await loadAllData();
+      }
+
+      async function deletePost(id) {
+        if (!currentRole) return;
+        if (!confirm('Delete this update?')) return;
+        const { error } = await db.from('posts').delete().eq('id', id);
+        if (error) return alert(error.message);
+        await loadAllData();
+      }
+
+      function renderResources() {
+        const grid = document.getElementById('resourceGrid');
+        if (!grid) return;
+        const items = [
+          ['notice', '📄'],
+          ['study', '📚'],
+          ['routine', '🗓️'],
+        ];
+        grid.innerHTML = items
+          .map(([key, icon]) => {
+            const r = resources[key];
+            return `<article class="card"><div class="resource"><div class="icon">${icon}</div><div class="resourcebody"><strong>${esc(r.title)}</strong><span>${esc(r.desc)}</span></div>${r.link ? `<a class="download" href="${esc(r.link)}" target="_blank" rel="noopener">View</a>` : `<span class="download">Add link</span>`}</div></article>`;
+          })
+          .join('');
+        renderStudyLinks();
+      }
+
+      function renderResourceInputs() {
+        const map = {
+          notice: 'noticeResourceLink',
+          study: 'studyResourceLink',
+          routine: 'routineResourceLink',
+        };
+        Object.entries(map).forEach(([key, id]) => {
+          const el = document.getElementById(id);
+          if (el) el.value = resources[key].link || '';
+        });
+      }
+
+      async function saveResources() {
+        if (!currentRole) return openLoginModal();
+        const links = {
+          notice: document.getElementById('noticeResourceLink')?.value.trim() || '',
+          study: document.getElementById('studyResourceLink')?.value.trim() || '',
+          routine: document.getElementById('routineResourceLink')?.value.trim() || '',
+        };
+        if (!Object.values(links).every(validUrl))
+          return setStatus('resourceStatus', 'Use valid http/https links.', true);
+        setStatus('resourceStatus', 'Saving…');
+        const rows = Object.entries(links).map(([key, link]) => ({
+          key,
+          title: resources[key].title,
+          description: resources[key].desc,
+          link: link || null,
+        }));
+        const { error } = await db.from('resources').upsert(rows, { onConflict: 'key' });
+        if (error) return setStatus('resourceStatus', error.message, true);
+        setStatus('resourceStatus', 'Resource links saved.');
+        await loadAllData();
+      }
+
+      function renderStudyLinks() {
+        const box = document.getElementById('studyLinksPublic');
+        if (!box) return;
+        if (!studyLinks.length) return (box.innerHTML = '');
+        box.innerHTML = `<div class="card"><div class="sectionhead" style="margin-bottom:12px"><div><h4 style="margin:0">Additional study materials</h4><p>Extra study links added by the department.</p></div></div><div class="grid">${studyLinks.map((item) => `<article class="card"><div class="resource"><div class="icon">🔗</div><div class="resourcebody"><strong>${esc(item.name)}</strong><span>Study resource</span></div><a class="download" href="${esc(item.link)}" target="_blank" rel="noopener">Open</a></div></article>`).join('')}</div></div>`;
+      }
+
+      async function addStudyLink() {
+        if (!currentRole) return openLoginModal();
+        const name = document.getElementById('studyLinkName')?.value.trim();
+        const link = document.getElementById('studyLinkUrl')?.value.trim();
+        if (!name || !link) return setStatus('studyLinkStatus', 'Enter a name and link.', true);
+        if (!validUrl(link))
+          return setStatus('studyLinkStatus', 'Please enter a valid http/https link.', true);
+        setStatus('studyLinkStatus', 'Adding…');
+        const { error } = await db
+          .from('study_links')
+          .insert({ name, link, created_by: currentUser.id });
+        if (error) return setStatus('studyLinkStatus', error.message, true);
+        document.getElementById('studyLinkName').value = '';
+        document.getElementById('studyLinkUrl').value = '';
+        setStatus('studyLinkStatus', 'Study link added.');
+        await loadAllData();
+      }
+
+      async function deleteStudyLink(id) {
+        if (!currentRole || !confirm('Remove this study link?')) return;
+        const { error } = await db.from('study_links').delete().eq('id', id);
+        if (error) return alert(error.message);
+        await loadAllData();
+      }
+
+      function renderStudyLinkAdmin() {
+        const box = document.getElementById('studyLinkAdminList');
+        if (!box) return;
+        if (!studyLinks.length) return (box.innerHTML = '<small>No extra study links yet.</small>');
+        box.innerHTML = studyLinks
+          .map(
+            (item) =>
+              `<div class="admin-item"><div><strong>${esc(item.name)}</strong><small>${esc(item.link)}</small></div><button class="danger" onclick="deleteStudyLink('${esc(item.id)}')">Remove</button></div>`
+          )
+          .join('');
+      }
+
+      async function addNotice() {
+        if (!currentRole) return openLoginModal();
+        const title = document.getElementById('noticeTitle')?.value.trim();
+        const text = document.getElementById('noticeText')?.value.trim();
+        const link = document.getElementById('noticeLink')?.value.trim() || null;
+        if (!title || !text)
+          return setStatus('noticeStatus', 'Add a notice title and description first.', true);
+        if (!validUrl(link))
+          return setStatus('noticeStatus', 'Please enter a valid http/https link.', true);
+        setStatus('noticeStatus', 'Adding…');
+        const { error } = await db
+          .from('notices')
+          .insert({ title, text, link, tag: 'NOTICE', created_by: currentUser.id });
+        if (error) return setStatus('noticeStatus', error.message, true);
+        ['noticeTitle', 'noticeText', 'noticeLink'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.value = '';
+        });
+        setStatus('noticeStatus', 'Notice added.');
+        await loadAllData();
+      }
+
+      async function deleteNotice(id) {
+        if (!currentRole || !confirm('Remove this notice?')) return;
+        const { error } = await db.from('notices').delete().eq('id', id);
+        if (error) return alert(error.message);
+        await loadAllData();
+      }
+
+      function renderNotices() {
+        const grid = document.getElementById('noticeGrid');
+        if (!grid) return;
+        if (!notices.length) {
+          grid.innerHTML = '<p style="color:var(--muted);margin:0">No notices available.</p>';
+          return;
+        }
+        grid.innerHTML = notices
+          .map((n) => {
+            const date = n.created_at
+              ? new Date(n.created_at).toLocaleDateString('en-IN', {
+                  day: '2-digit',
+                  month: 'short',
+                  year: 'numeric',
+                })
+              : '';
+            return `<div class="notice"><div><strong>${esc(n.title)}</strong><p>${esc(n.text || '')}</p>${n.link ? `<a class="download" href="${esc(n.link)}" target="_blank" rel="noopener">Open notice →</a>` : ''}</div><div class="tag">${esc(n.tag || 'NOTICE')} · ${esc(date)}</div></div>`;
+          })
+          .join('');
+      }
+
+      function renderNoticeAdmin() {
+        const box = document.getElementById('noticeAdminList');
+        if (!box) return;
+        if (!notices.length) return (box.innerHTML = '<small>No notices yet.</small>');
+        box.innerHTML = notices
+          .map(
+            (n) =>
+              `<div class="admin-item"><div><strong>${esc(n.title)}</strong><small>${esc(n.created_at ? new Date(n.created_at).toLocaleDateString('en-IN') : '')}</small></div><button class="danger" onclick="deleteNotice('${esc(n.id)}')">Remove</button></div>`
+          )
+          .join('');
+      }
+
+      async function removeDefaultUpdate(id) {
+        if (!currentRole) return openLoginModal();
+        const { error } = await db
+          .from('hidden_defaults')
+          .upsert({ id, hidden: true, created_by: currentUser.id }, { onConflict: 'id' });
+        if (error) return alert(error.message);
+        hiddenDefaults.add(id);
+        applyDefaultVisibility();
+      }
+
+      function applyDefaultVisibility() {
+        document.querySelectorAll('.default-update').forEach((card) => {
+          card.style.display = hiddenDefaults.has(card.dataset.defaultId) ? 'none' : '';
+        });
+      }
+
+      function filterCards() {
+        const search = (document.getElementById('search')?.value || '').trim().toLowerCase();
+        document.querySelectorAll('#updateGrid .searchable').forEach((card) => {
+          card.style.display =
+            !search || card.textContent.toLowerCase().includes(search) ? '' : 'none';
+        });
+        applyDefaultVisibility();
+      }
+
+      async function renderAdmins() {
+        const box = document.getElementById('adminList');
+        if (!box || currentRole !== 'owner') return;
+        const { data, error } = await db
+          .from('admin_users')
+          .select('id,name,role,created_at')
+          .order('created_at', { ascending: true });
+        if (error) return (box.innerHTML = `<small>${esc(error.message)}</small>`);
+        box.innerHTML = (data || [])
+          .map(
+            (a) =>
+              `<div class="admin-item"><div><strong>${esc(a.name)}</strong><small>${esc(a.role)} · ${esc(a.id)}</small></div>${a.role === 'admin' ? `<button class="danger" onclick="removeAdmin('${esc(a.id)}')">Remove</button>` : `<span class="tag">OWNER</span>`}</div>`
+          )
+          .join('');
+      }
+
+      async function addAdmin() {
+        if (currentRole !== 'owner') return;
+        const name = document.getElementById('adminName')?.value.trim();
+        const email = document.getElementById('adminEmail')?.value.trim();
+        if (!name || !email)
+          return setStatus(
+            'adminStatus',
+            'Enter the admin name and the email of an existing Supabase user.',
+            true
+          );
+        setStatus('adminStatus', 'Adding admin…');
+        const { error } = await db.rpc('add_admin_by_email', {
+          target_email: email,
+          target_name: name,
+        });
+        if (error) return setStatus('adminStatus', error.message, true);
+        document.getElementById('adminName').value = '';
+        document.getElementById('adminEmail').value = '';
+        setStatus('adminStatus', 'Admin added.');
+        await renderAdmins();
+      }
+
+      async function removeAdmin(id) {
+        if (currentRole !== 'owner' || !confirm("Remove this admin's portal access?")) return;
+        const { error } = await db.rpc('remove_admin', { target_id: id });
+        if (error) return alert(error.message);
+        await renderAdmins();
+      }
+
+      function getLegacyState() {
+        try {
+          return JSON.parse(localStorage.getItem(LEGACY_STORE) || 'null');
+        } catch {
+          return null;
+        }
+      }
+
+      async function migrateLegacyDataIfNeeded() {
+        if (currentRole !== 'owner' || localStorage.getItem(MIGRATION_STORE) === '1') return;
+        const legacy = getLegacyState();
+        if (!legacy) {
+          localStorage.setItem(MIGRATION_STORE, '1');
+          return;
+        }
+        const status = document.getElementById('adminStatus');
+        if (status) status.textContent = 'Importing your previous local data into Supabase…';
+        try {
+          if (Array.isArray(legacy.posts) && legacy.posts.length) {
+            const rows = legacy.posts.map((p) => ({
+              title: p.title || 'Untitled',
+              category: p.category || 'UPDATE',
+              body: p.text || p.body || '',
+              link: p.link || null,
+              published: true,
+              created_by: currentUser.id,
+            }));
+            await db.from('posts').insert(rows);
+          }
+          if (Array.isArray(legacy.notices) && legacy.notices.length) {
+            const rows = legacy.notices.map((n) => ({
+              title: n.title || 'Notice',
+              text: n.text || '',
+              link: n.link || null,
+              tag: n.tag || 'NOTICE',
+              created_by: currentUser.id,
+            }));
+            await db.from('notices').insert(rows);
+          }
+          const lr = legacy.resources || {};
+          const resourceRows = ['notice', 'study', 'routine'].map((key) => {
+            const r = lr[key] || resources[key];
+            return {
+              key,
+              title: r.title || resources[key].title,
+              description: r.desc || r.description || resources[key].desc,
+              link: r.link || null,
+            };
+          });
+          await db.from('resources').upsert(resourceRows, { onConflict: 'key' });
+          if (Array.isArray(lr.studyLinks) && lr.studyLinks.length) {
+            const rows = lr.studyLinks.map((x) => ({ name: x.name || 'Study link', link: x.link }));
+            await db.from('study_links').insert(rows);
+          }
+          if (Array.isArray(legacy.hiddenDefaults) && legacy.hiddenDefaults.length) {
+            await db.from('hidden_defaults').upsert(
+              legacy.hiddenDefaults.map((id) => ({ id, hidden: true, created_by: currentUser.id })),
+              { onConflict: 'id' }
+            );
+          }
+          localStorage.setItem(MIGRATION_STORE, '1');
+          if (status) status.textContent = 'Previous local data imported successfully.';
+        } catch (error) {
+          console.error(error);
+          if (status)
+            status.textContent =
+              'Some old local data could not be imported. Check the browser console.';
+        }
+      }
+
+      function setupRealtime() {
+        if (realtimeChannel) db.removeChannel(realtimeChannel);
+        realtimeChannel = db
+          .channel('uit-ece-portal-live')
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'posts' }, loadAllData)
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'notices' }, loadAllData)
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'resources' }, loadAllData)
+          .on(
+            'postgres_changes',
+            { event: '*', schema: 'public', table: 'study_links' },
+            loadAllData
+          )
+          .on(
+            'postgres_changes',
+            { event: '*', schema: 'public', table: 'hidden_defaults' },
+            loadAllData
+          )
+          .subscribe();
+      }
+
+      async function init() {
+        applyTheme();
+        const { data } = await db.auth.getSession();
+        await loadAuthUser(data.session?.user || null);
+        renderAdminState();
+        await loadAllData();
+        if (currentRole) {
+          await migrateLegacyDataIfNeeded();
+          await loadAllData();
+        }
+        setupRealtime();
+      }
+
+      window.addEventListener('DOMContentLoaded', init);
+      db.auth.onAuthStateChange(async (_event, session) => {
+        await loadAuthUser(session?.user || null);
+        renderAdminState();
+        if (currentRole) {
+          await loadAllData();
+          renderAdmins();
+        }
+      });
+
+      window.scrollToId = scrollToId;
+      window.toggleTheme = toggleTheme;
+      window.adminInfo = adminInfo;
+      window.loginAdmin = loginAdmin;
+      window.closeLoginModal = closeLoginModal;
+      window.logoutAdmin = logoutAdmin;
+      window.publishPost = publishPost;
+      window.deletePost = deletePost;
+      window.addAdmin = addAdmin;
+      window.removeAdmin = removeAdmin;
+      window.saveResources = saveResources;
+      window.addStudyLink = addStudyLink;
+      window.deleteStudyLink = deleteStudyLink;
+      window.addNotice = addNotice;
+      window.deleteNotice = deleteNotice;
+      window.removeDefaultUpdate = removeDefaultUpdate;
+      window.filterCards = filterCards;
+    </script>
+  </body>
+</html>
