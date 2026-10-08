@@ -1042,7 +1042,6 @@
             .subscribe();
         }
 
-        async
         // 3D Liquid Tilt Interaction
         function init3DTilt() {
           const elements = document.querySelectorAll('.card, .hero');
@@ -1067,7 +1066,7 @@
           });
         }
 
-        function init() {
+        async function init() {
           applyTheme();
           const { data } = await db.auth.getSession();
           await loadAuthUser(data.session?.user || null);
