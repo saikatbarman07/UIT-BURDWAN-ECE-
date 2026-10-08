@@ -769,42 +769,197 @@ body.dark .blob {
   box-shadow: 0 8px 20px -4px var(--accent-glow);
 }
 
-.notice {
+/* ==========================================================================
+   NOTICE BOARD - ULTRA PROFESSIONAL DESIGN
+   ========================================================================== */
+.notice-feed {
   display: grid;
-  grid-template-columns: 75px 1fr auto;
-  gap: 18px;
+  gap: 16px;
+  perspective: 1000px;
+}
+
+.notice-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 22px;
+  padding: 22px 24px;
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  box-shadow: var(--glass-shadow);
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s,
+    border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.notice-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.notice-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-4px) scale3d(1.01, 1.01, 1.01);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+/* Calendar Date Badge */
+.notice-date-badge {
+  flex: 0 0 74px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.notice:last-child {
-  border-bottom: 0;
-}
-
-.date {
+  justify-content: center;
+  background: var(--surface2);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
+  padding: 10px 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   text-align: center;
-  padding: 10px;
-  background: var(--surface2);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transform: translateZ(15px);
 }
 
-.date b {
-  display: block;
+.notice-day {
   font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 850;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
   color: var(--accent);
 }
 
-.date small {
-  color: var(--muted);
-  font-size: 10.5px;
-  font-weight: 750;
+.notice-month {
+  font-size: 11px;
+  font-weight: 850;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  color: var(--text-heading);
+  margin-top: 3px;
+}
+
+.notice-year {
+  font-size: 10.5px;
+  font-weight: 650;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+/* Notice Main Content */
+.notice-main {
+  flex: 1;
+  min-width: 0;
+  transform: translateZ(10px);
+}
+
+.notice-header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.notice-pill {
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  padding: 4px 12px;
+  border-radius: 99px;
+  box-shadow: 0 3px 10px var(--accent-glow);
+  display: inline-flex;
+  align-items: center;
+}
+
+.notice-timestamp {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.notice-del-btn {
+  margin-left: auto;
+  padding: 4px 10px;
+  font-size: 11.5px;
+}
+
+.notice-title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--text-heading);
+  line-height: 1.45;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.notice-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.notice-actions {
+  margin-top: 14px;
+}
+
+.notice-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--glass-border);
+  color: var(--accent);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.notice-download-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -3px var(--accent-glow);
+}
+
+@media (max-width: 640px) {
+  .notice-card {
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+  }
+  .notice-date-badge {
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 14px;
+  }
+  .notice-del-btn {
+    margin-left: 0;
+  }
 }
 
 .footer {

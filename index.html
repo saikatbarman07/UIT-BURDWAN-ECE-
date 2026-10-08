@@ -351,7 +351,7 @@
             </div>
           </div>
 
-          <div class="card" id="noticeGrid"></div>
+          <div id="noticeGrid" class="notice-feed"></div>
         </section>
 
         <!-- FOOTER -->
@@ -849,19 +849,35 @@
         const grid = document.getElementById('noticeGrid');
         if (!grid) return;
         if (!notices.length) {
-          grid.innerHTML = '<p style="color:var(--muted);margin:0">No notices available.</p>';
+          grid.innerHTML =
+            '<div class="card" style="text-align:center;padding:32px"><p style="color:var(--muted);margin:0;font-size:14.5px">No official notices published yet.</p></div>';
           return;
         }
         grid.innerHTML = notices
           .map((n) => {
-            const date = n.created_at
-              ? new Date(n.created_at).toLocaleDateString('en-IN', {
-                  day: '2-digit',
-                  month: 'short',
-                  year: 'numeric',
-                })
-              : '';
-            return `<div class="notice"><div><strong>${esc(n.title)}</strong><p>${esc(n.text || '')}</p>${n.link ? `<a class="download" href="${esc(n.link)}" target="_blank" rel="noopener">Open notice →</a>` : ''}</div><div class="tag">${esc(n.tag || 'NOTICE')} · ${esc(date)}</div></div>`;
+            const dateObj = n.created_at ? new Date(n.created_at) : new Date();
+            const day = dateObj.toLocaleDateString('en-IN', { day: '2-digit' });
+            const month = dateObj.toLocaleDateString('en-IN', { month: 'short' });
+            const year = dateObj.toLocaleDateString('en-IN', { year: 'numeric' });
+            const fullDate = `${day} ${month} ${year}`;
+            const desc = n.body || n.text || '';
+            return `<article class="notice-card">
+              <div class="notice-date-badge">
+                <span class="notice-day">${esc(day)}</span>
+                <span class="notice-month">${esc(month)}</span>
+                <span class="notice-year">${esc(year)}</span>
+              </div>
+              <div class="notice-main">
+                <div class="notice-header-row">
+                  <span class="notice-pill">${esc(n.tag || 'NOTICE')}</span>
+                  <span class="notice-timestamp">📅 ${esc(fullDate)}</span>
+                  ${currentRole ? `<button class="danger notice-del-btn" onclick="deleteNotice('${esc(n.id)}')">Delete</button>` : ''}
+                </div>
+                <h4 class="notice-title">${esc(n.title)}</h4>
+                ${desc ? `<p class="notice-desc">${esc(desc)}</p>` : ''}
+                ${n.link ? `<div class="notice-actions"><a class="notice-download-btn" href="${esc(n.link)}" target="_blank" rel="noopener"><span>Open Document</span> →</a></div>` : ''}
+              </div>
+            </article>`;
           })
           .join('');
       }
