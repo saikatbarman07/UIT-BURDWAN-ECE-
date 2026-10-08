@@ -6,13 +6,13 @@ This workspace has been configured with an industry-standard modern web developm
 
 ## 🛠️ Installed Tools & Toolchain
 
-| Tool | Version | Purpose |
-| :--- | :--- | :--- |
-| **Node.js (LTS)** | `v24.20.0` | JavaScript runtime powering all modern tooling |
-| **npm** | `11.19.0` | Node Package Manager for dependencies |
-| **Git** | `2.48.1` | Version control for tracking revisions & collaboration |
-| **Vite** | `8.3.4` | Ultra-fast development server & production bundler |
-| **Prettier** | `3.9.9` | Automated code formatting engine |
+| Tool              | Version    | Purpose                                                |
+| :---------------- | :--------- | :----------------------------------------------------- |
+| **Node.js (LTS)** | `v24.20.0` | JavaScript runtime powering all modern tooling         |
+| **npm**           | `11.19.0`  | Node Package Manager for dependencies                  |
+| **Git**           | `2.48.1`   | Version control for tracking revisions & collaboration |
+| **Vite**          | `8.3.4`    | Ultra-fast development server & production bundler     |
+| **Prettier**      | `3.9.9`    | Automated code formatting engine                       |
 
 ---
 
@@ -53,6 +53,7 @@ npm run format
 ## 🌐 Deploying Your Website
 
 Your project is ready to deploy on any modern hosting platform:
+
 - **Vercel**: Import repository or run `npx vercel`
 - **Netlify**: Drag-and-drop the `dist` folder or connect Git
 - **GitHub Pages**: Push your code to GitHub and publish
