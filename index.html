@@ -6,6 +6,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
   <title>UIT Burdwan — Department of ECE</title>
+  <meta name="title" content="UIT Burdwan — Department of ECE" />
+  <meta name="description" content="Department of Electronics and Communication Engineering, University Institute of Technology, Burdwan. Announcements, notices, routines, and study resources." />
+
+  <!-- Open Graph / WhatsApp / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UIT Burdwan — Department of ECE" />
+  <meta property="og:title" content="UIT Burdwan — Department of ECE" />
+  <meta property="og:description" content="Department of Electronics and Communication Engineering, University Institute of Technology, Burdwan. Announcements, notices, routines, and study resources." />
+
+  <!-- Twitter / Telegram -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="UIT Burdwan — Department of ECE" />
+  <meta name="twitter:description" content="Department of Electronics and Communication Engineering, University Institute of Technology, Burdwan." />
+  <meta name="theme-color" content="#070a14" />
 
   <!-- Google Fonts: Space Grotesk, Outfit, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -256,9 +270,10 @@
               material and important student information.
             </p>
 
-            <button class="danger default-admin-remove" onclick="removeDefaultUpdate('welcome')">
-              Remove update
-            </button>
+            <div class="card-admin-actions">
+              <button class="ghost edit-btn" onclick="editDefaultUpdate('welcome')">✏️ Edit</button>
+              <button class="danger" onclick="removeDefaultUpdate('welcome')">Delete</button>
+            </div>
           </article>
 
           <article class="card searchable default-update" data-default-id="academic">
@@ -275,9 +290,10 @@
               are available.
             </p>
 
-            <button class="danger default-admin-remove" onclick="removeDefaultUpdate('academic')">
-              Remove update
-            </button>
+            <div class="card-admin-actions">
+              <button class="ghost edit-btn" onclick="editDefaultUpdate('academic')">✏️ Edit</button>
+              <button class="danger" onclick="removeDefaultUpdate('academic')">Delete</button>
+            </div>
           </article>
 
           <article class="card searchable default-update" data-default-id="important">
@@ -294,9 +310,10 @@
               department information.
             </p>
 
-            <button class="danger default-admin-remove" onclick="removeDefaultUpdate('important')">
-              Remove update
-            </button>
+            <div class="card-admin-actions">
+              <button class="ghost edit-btn" onclick="editDefaultUpdate('important')">✏️ Edit</button>
+              <button class="danger" onclick="removeDefaultUpdate('important')">Delete</button>
+            </div>
           </article>
         </div>
       </section>
@@ -428,6 +445,7 @@
     let posts = [];
     let notices = [];
     let editingPostId = null;
+    let editingDefaultId = null;
     let editingNoticeId = null;
 
     function esc(value) {
@@ -644,12 +662,6 @@
       const ownerOnly = document.querySelectorAll('.owner-only');
       ownerOnly.forEach((el) => el.classList.toggle('hidden', currentRole !== 'owner'));
       if (!currentRole && panel) panel.classList.remove('open');
-
-      if (!currentRole) {
-        document
-          .querySelectorAll('.card-admin-actions, .notice-admin-actions, .default-admin-remove')
-          .forEach((el) => el.remove());
-      }
     }
 
     async function loadAllData() {
@@ -740,6 +752,7 @@
       const post = posts.find((p) => p.id === id);
       if (!post) return;
       editingPostId = id;
+      editingDefaultId = null;
       const panel = document.getElementById('adminPanel');
       if (panel) panel.classList.add('open');
       const titleInput = document.getElementById('postTitle');
@@ -760,8 +773,38 @@
       if (titleInput) titleInput.focus();
     }
 
+    function editDefaultUpdate(id) {
+      if (!currentRole) return openLoginModal();
+      const card = document.querySelector(`.default-update[data-default-id="${id}"]`);
+      if (!card) return;
+      editingDefaultId = id;
+      editingPostId = null;
+      const panel = document.getElementById('adminPanel');
+      if (panel) panel.classList.add('open');
+      const titleInput = document.getElementById('postTitle');
+      const catInput = document.getElementById('postCategory');
+      const textInput = document.getElementById('postText');
+      const linkInput = document.getElementById('postLink');
+      const title = card.querySelector('h4')?.textContent.trim() || '';
+      const cat = card.querySelector('.tag')?.textContent.trim() || 'UPDATE';
+      const text = card.querySelector('p')?.textContent.trim() || '';
+      if (titleInput) titleInput.value = title;
+      if (catInput) catInput.value = cat;
+      if (textInput) textInput.value = text;
+      if (linkInput) linkInput.value = '';
+      const banner = document.getElementById('postEditingBanner');
+      const bannerTitle = document.getElementById('postEditingTitle');
+      const btn = document.getElementById('publishPostBtn');
+      if (banner) banner.classList.remove('hidden');
+      if (bannerTitle) bannerTitle.textContent = title || 'Default Update';
+      if (btn) btn.textContent = 'Save update changes';
+      scrollToId('adminPanel');
+      if (titleInput) titleInput.focus();
+    }
+
     function cancelEditPost() {
       editingPostId = null;
+      editingDefaultId = null;
       const banner = document.getElementById('postEditingBanner');
       const btn = document.getElementById('publishPostBtn');
       if (banner) banner.classList.add('hidden');
@@ -790,6 +833,20 @@
           .from('posts')
           .update({ title, category, body, link })
           .eq('id', editingPostId);
+        if (error) return setStatus('adminStatus', error.message, true);
+        cancelEditPost();
+        setStatus('adminStatus', 'Update saved successfully.');
+      } else if (editingDefaultId) {
+        setStatus('adminStatus', 'Saving update changes…');
+        const { error: hideErr } = await db
+          .from('hidden_defaults')
+          .upsert({ id: editingDefaultId, hidden: true, created_by: currentUser.id }, { onConflict: 'id' });
+        if (hideErr) console.warn('Could not mark default hidden:', hideErr);
+        hiddenDefaults.add(editingDefaultId);
+
+        const { error } = await db
+          .from('posts')
+          .insert({ title, category, body, link, published: true, created_by: currentUser.id });
         if (error) return setStatus('adminStatus', error.message, true);
         cancelEditPost();
         setStatus('adminStatus', 'Update saved successfully.');
@@ -1045,6 +1102,7 @@
 
     async function removeDefaultUpdate(id) {
       if (!currentRole) return openLoginModal();
+      if (!confirm('Delete this update?')) return;
       const { error } = await db
         .from('hidden_defaults')
         .upsert({ id, hidden: true, created_by: currentUser.id }, { onConflict: 'id' });
