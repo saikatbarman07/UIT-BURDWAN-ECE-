@@ -1272,14 +1272,17 @@ body.dark .blob {
 .admin-item {
   display: flex;
   justify-content: space-between;
-  gap: 14px;
+  gap: 12px;
   align-items: center;
-  padding: 13px 16px;
+  padding: 12px 14px;
   border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  border-radius: 14px;
   background: var(--surface2);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
   transition: background 0.2s ease, border-color 0.2s ease;
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
 }
 
 .admin-item:hover {
@@ -1290,7 +1293,8 @@ body.dark .blob {
 .admin-item > div:first-child,
 .admin-item-info {
   min-width: 0;
-  flex: 1 1 auto;
+  flex: 1 1 0%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -1303,7 +1307,9 @@ body.dark .blob {
   font-weight: 750;
   color: var(--text-heading);
   line-height: 1.35;
-  word-break: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .admin-item small,
@@ -1315,6 +1321,7 @@ body.dark .blob {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: 100%;
   max-width: 100%;
 }
 
@@ -1322,9 +1329,12 @@ a.admin-item-link {
   color: var(--accent);
   text-decoration: none;
   font-family: var(--font-mono);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 100%;
 }
 
 a.admin-item-link:hover {
@@ -1336,12 +1346,15 @@ a.admin-item-link:hover {
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .admin-item .danger,
 .admin-item button {
   flex-shrink: 0;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
 }
 
 .danger {
