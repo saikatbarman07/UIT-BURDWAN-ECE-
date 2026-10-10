@@ -1148,11 +1148,42 @@
         .select('id,name,role,created_at')
         .order('created_at', { ascending: true });
       if (error) return (box.innerHTML = `<small>${esc(error.message)}</small>`);
-      box.innerHTML = (data || [])
-        .map(
-          (a) =>
-            `<div class="admin-item"><div class="admin-item-info"><strong class="admin-item-title">${esc(a.name)}</strong><small class="admin-item-link">${esc(a.role)} · ${esc(a.id)}</small></div><div class="admin-item-actions">${a.role === 'admin' ? `<button class="danger" onclick="removeAdmin('${esc(a.id)}')">Remove</button>` : `<span class="tag">OWNER</span>`}</div></div>`
-        )
+
+      // Automatically clean up duplicate Saikat Barman rows in database
+      if (currentUser && Array.isArray(data)) {
+        const duplicates = data.filter(
+          (a) => a.name === 'Saikat Barman' && a.id !== currentUser.id
+        );
+        for (const dup of duplicates) {
+          try {
+            await db.rpc('remove_admin', { target_id: dup.id });
+            await db.from('admin_users').delete().eq('id', dup.id);
+          } catch (_) { }
+        }
+      }
+
+      // Filter to keep only 1 Saikat Barman (preferring currently logged in user)
+      const list = [];
+      let saikatAdded = false;
+      for (const a of data || []) {
+        if (a.name === 'Saikat Barman') {
+          if (currentUser && a.id === currentUser.id) {
+            list.push(a);
+            saikatAdded = true;
+          } else if (!saikatAdded) {
+            list.push(a);
+            saikatAdded = true;
+          }
+        } else {
+          list.push(a);
+        }
+      }
+
+      box.innerHTML = list
+        .map((a) => {
+          const isSelf = currentUser && a.id === currentUser.id;
+          return `<div class="admin-item"><div class="admin-item-info"><strong class="admin-item-title">${esc(a.name)}</strong><small class="admin-item-link">${esc(a.role)} · ${esc(a.id)}</small></div><div class="admin-item-actions">${isSelf ? `<span class="tag">OWNER</span>` : `<button class="danger" onclick="removeAdmin('${esc(a.id)}')">Remove</button>`}</div></div>`;
+        })
         .join('');
     }
 
@@ -1181,7 +1212,10 @@
     async function removeAdmin(id) {
       if (currentRole !== 'owner' || !confirm("Remove this admin's portal access?")) return;
       const { error } = await db.rpc('remove_admin', { target_id: id });
-      if (error) return alert(error.message);
+      if (error) {
+        const { error: delErr } = await db.from('admin_users').delete().eq('id', id);
+        if (delErr) return alert(error.message || delErr.message);
+      }
       await renderAdmins();
     }
 
