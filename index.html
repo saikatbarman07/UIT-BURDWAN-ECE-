@@ -459,8 +459,9 @@
       const el = document.getElementById(id);
       if (el) {
         const yOffset = -76;
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: y, behavior: prefersReduced ? 'auto' : 'smooth' });
       }
     }
 
@@ -533,7 +534,7 @@
       if (!currentRole) {
         try {
           await db.auth.signOut();
-        } catch (_) {}
+        } catch (_) { }
         currentUser = null;
         currentAdminName = '';
         document.getElementById('adminPanel')?.classList.remove('open');
@@ -567,7 +568,7 @@
         console.warn('Sign out warning:', err);
         try {
           await db.auth.signOut({ scope: 'local' });
-        } catch (_) {}
+        } catch (_) { }
       }
       try {
         for (let i = localStorage.length - 1; i >= 0; i--) {
@@ -576,7 +577,7 @@
             localStorage.removeItem(key);
           }
         }
-      } catch (_) {}
+      } catch (_) { }
 
       currentUser = null;
       currentRole = null;
@@ -703,10 +704,12 @@
       });
 
       grid.querySelectorAll("[data-admin-post='1']").forEach((el) => el.remove());
+      const frag = document.createDocumentFragment();
       posts.forEach((post) => {
         const article = document.createElement('article');
         article.className = 'card searchable';
         article.dataset.adminPost = '1';
+        article._cachedSearchText = `${post.title || ''} ${post.category || ''} ${post.body || ''}`.toLowerCase();
         article.innerHTML = `
         <div class="cardtop"><div class="icon">📢</div><span class="tag">${esc(post.category || 'UPDATE')}</span></div>
         <h4>${esc(post.title)}</h4>
@@ -727,8 +730,9 @@
             : ''
           }
       `;
-        grid.appendChild(article);
+        frag.appendChild(article);
       });
+      grid.appendChild(frag);
       filterCards();
     }
 
@@ -1055,13 +1059,27 @@
       });
     }
 
+    let filterCardsRaf = null;
     function filterCards() {
-      const search = (document.getElementById('search')?.value || '').trim().toLowerCase();
-      document.querySelectorAll('#updateGrid .searchable').forEach((card) => {
-        card.style.display =
-          !search || card.textContent.toLowerCase().includes(search) ? '' : 'none';
+      if (filterCardsRaf) cancelAnimationFrame(filterCardsRaf);
+      filterCardsRaf = requestAnimationFrame(() => {
+        const searchInput = document.getElementById('search');
+        const search = (searchInput?.value || '').trim().toLowerCase();
+        const cards = document.querySelectorAll('#updateGrid .searchable');
+        cards.forEach((card) => {
+          if (!search) {
+            card.style.display = '';
+            return;
+          }
+          let text = card._cachedSearchText;
+          if (!text) {
+            text = card.textContent.toLowerCase();
+            card._cachedSearchText = text;
+          }
+          card.style.display = text.includes(search) ? '' : 'none';
+        });
+        applyDefaultVisibility();
       });
-      applyDefaultVisibility();
     }
 
     async function renderAdmins() {
@@ -1200,7 +1218,7 @@
     }
 
     // 100% GPU-composited CSS transitions replace JS mousemove listeners for stutter-free 120fps scrolling
-    function init3DTilt() {}
+    function init3DTilt() { }
 
     async function init() {
       applyTheme();
@@ -1232,6 +1250,22 @@
         if (adminList) adminList.innerHTML = '';
       }
     });
+
+    // High-performance scroll optimization: pause background keyframes & suppress hover reflows during active scroll
+    let scrollDebounce = null;
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!document.body.classList.contains('is-scrolling')) {
+          document.body.classList.add('is-scrolling');
+        }
+        if (scrollDebounce) clearTimeout(scrollDebounce);
+        scrollDebounce = setTimeout(() => {
+          document.body.classList.remove('is-scrolling');
+        }, 120);
+      },
+      { passive: true }
+    );
 
     window.scrollToId = scrollToId;
     window.toggleTheme = toggleTheme;

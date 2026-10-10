@@ -73,6 +73,8 @@ body.dark {
 
 html {
   scroll-padding-top: 88px;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -84,10 +86,25 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizeSpeed;
+  font-synthesis: none;
+  touch-action: pan-y;
   transition:
     background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Pause heavy background animations and disable hover overhead during active scroll */
+body.is-scrolling .blob {
+  animation-play-state: paused !important;
+}
+
+body.is-scrolling .card,
+body.is-scrolling .notice-card,
+body.is-scrolling .primary,
+body.is-scrolling .ghost,
+body.is-scrolling .download {
+  pointer-events: none !important;
 }
 
 /* Custom Sleek Ultra-Smooth Scrollbar */
@@ -136,8 +153,7 @@ body.dark ::-webkit-scrollbar-thumb:hover {
   pointer-events: none;
   contain: strict;
   isolation: isolate;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .blob {
@@ -146,7 +162,6 @@ body.dark ::-webkit-scrollbar-thumb:hover {
   filter: blur(48px);
   opacity: 0.45;
   transition: opacity 0.5s ease;
-  will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
 }
@@ -336,8 +351,6 @@ body.dark .blob {
 .ghost {
   border: 1px solid var(--glass-border);
   background: var(--surface2);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   color: var(--text);
   padding: 9px 16px;
   border-radius: 12px;
@@ -345,7 +358,11 @@ body.dark .blob {
   font-weight: 650;
   font-size: 13.5px;
   cursor: pointer;
-  transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
   box-shadow:
     0 2px 8px rgba(0, 0, 0, 0.03),
     inset 0 1px 1px rgba(255, 255, 255, 0.4);
@@ -446,22 +463,33 @@ body.dark .blob {
   height: 8px;
   border-radius: 50%;
   background: #10b981;
-  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-  animation: radarPulse 2s infinite;
+  position: relative;
+  display: inline-block;
 }
 
-@keyframes radarPulse {
+.pulsing-radar::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.75;
+  animation: radarPulseGPU 2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes radarPulseGPU {
   0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    transform: scale(1);
+    opacity: 0.8;
   }
   70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+    transform: scale(2.5);
+    opacity: 0;
   }
   100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    transform: scale(2.5);
+    opacity: 0;
   }
 }
 
@@ -598,8 +626,6 @@ body.dark .blob {
   align-items: center;
   gap: 7px;
   background: var(--surface2);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   padding: 8px 14px;
   border-radius: 99px;
@@ -629,6 +655,8 @@ body.dark .blob {
   padding: 42px 0;
   position: relative;
   scroll-margin-top: 88px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
 }
 
 .sectionhead {
@@ -664,28 +692,49 @@ body.dark .blob {
   height: 7px;
   border-radius: 50%;
   display: inline-block;
+  position: relative;
 }
 
 .eyebrow-dot.pulse-dot {
   background: #3b82f6;
-  box-shadow: 0 0 10px #3b82f6;
-  animation: radarPulse 2s infinite;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+.eyebrow-dot.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.75;
+  animation: radarPulseGPU 2s infinite ease-out;
+  pointer-events: none;
 }
 
 .eyebrow-dot.blue-dot {
   background: #06b6d4;
-  box-shadow: 0 0 10px #06b6d4;
+  box-shadow: 0 0 8px #06b6d4;
 }
 
 .eyebrow-dot.orange-dot {
   background: #f59e0b;
-  box-shadow: 0 0 10px #f59e0b;
-  animation: radarPulse 2.5s infinite;
+  box-shadow: 0 0 8px #f59e0b;
+}
+
+.eyebrow-dot.orange-dot::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.75;
+  animation: radarPulseGPU 2.5s infinite ease-out;
+  pointer-events: none;
 }
 
 .eyebrow-dot.lock-dot {
   background: #8b5cf6;
-  box-shadow: 0 0 10px #8b5cf6;
+  box-shadow: 0 0 8px #8b5cf6;
 }
 
 .section h3,
@@ -747,8 +796,6 @@ body.dark .blob {
 .field {
   border: 1px solid var(--glass-border);
   background: var(--surface2);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   color: var(--text);
   border-radius: 14px;
   padding: 12px 16px;
@@ -756,7 +803,10 @@ body.dark .blob {
   font-family: var(--font-body);
   font-size: 14px;
   outline: none;
-  transition: all 0.28s ease;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
 }
 
@@ -788,6 +838,7 @@ body.dark .blob {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  contain: layout style;
   transition:
     transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
@@ -899,7 +950,6 @@ body.dark .blob {
 .download {
   border: 1px solid var(--glass-border);
   background: var(--surface2);
-  backdrop-filter: blur(10px);
   color: var(--accent);
   border-radius: 12px;
   padding: 8px 16px;
@@ -967,6 +1017,7 @@ body.dark .blob {
   border-radius: 22px;
   padding: 22px 24px;
   box-shadow: var(--glass-shadow);
+  contain: layout style;
   transition:
     transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1480,6 +1531,38 @@ body:not(.is-admin) .edit-btn {
 }
 
 @media (max-width: 720px) {
+  .blob {
+    filter: blur(28px);
+  }
+
+  body.dark .blob {
+    filter: blur(32px);
+  }
+
+  .blob-1 {
+    width: 320px;
+    height: 320px;
+    top: -80px;
+    left: -80px;
+  }
+
+  .blob-2 {
+    width: 340px;
+    height: 340px;
+    top: 25%;
+    right: -100px;
+  }
+
+  .blob-3 {
+    width: 280px;
+    height: 280px;
+  }
+
+  .blob-4 {
+    width: 260px;
+    height: 260px;
+  }
+
   .brand-sub {
     display: none;
   }
