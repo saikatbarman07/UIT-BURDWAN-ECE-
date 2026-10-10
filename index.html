@@ -205,10 +205,10 @@
 
               <button class="ghost" onclick="addStudyLink()">＋ Add study link</button>
 
-              <div class="admin-list" id="studyLinkAdminList"></div>
-
               <div class="status" id="studyLinkStatus"></div>
             </div>
+
+            <div class="admin-list" id="studyLinkAdminList"></div>
           </div>
         </div>
 
@@ -963,7 +963,7 @@
       box.innerHTML = studyLinks
         .map(
           (item) =>
-            `<div class="admin-item"><div><strong>${esc(item.name)}</strong><small>${esc(item.link)}</small></div><button class="danger" onclick="deleteStudyLink('${esc(item.id)}')">Remove</button></div>`
+            `<div class="admin-item"><div class="admin-item-info"><strong class="admin-item-title">${esc(item.name)}</strong><a class="admin-item-link" href="${esc(item.link)}" target="_blank" rel="noopener" title="${esc(item.link)}">🔗 ${esc(item.link)}</a></div><div class="admin-item-actions"><button class="danger" onclick="deleteStudyLink('${esc(item.id)}')">Remove</button></div></div>`
         )
         .join('');
     }
@@ -1095,7 +1095,7 @@
       box.innerHTML = notices
         .map(
           (n) =>
-            `<div class="admin-item"><div><strong>${esc(n.title)}</strong><small>${esc(n.created_at ? new Date(n.created_at).toLocaleDateString('en-IN') : '')}</small></div><div style="display:flex;gap:6px"><button class="ghost edit-btn" style="padding:4px 10px;font-size:12px" onclick="editNotice('${esc(n.id)}')">Edit</button><button class="danger" onclick="deleteNotice('${esc(n.id)}')">Remove</button></div></div>`
+            `<div class="admin-item"><div class="admin-item-info"><strong class="admin-item-title">${esc(n.title)}</strong><small class="admin-item-link">${esc(n.created_at ? new Date(n.created_at).toLocaleDateString('en-IN') : '')}</small></div><div class="admin-item-actions"><button class="ghost edit-btn" style="padding:4px 10px;font-size:12px" onclick="editNotice('${esc(n.id)}')">Edit</button><button class="danger" onclick="deleteNotice('${esc(n.id)}')">Remove</button></div></div>`
         )
         .join('');
     }
@@ -1151,7 +1151,7 @@
       box.innerHTML = (data || [])
         .map(
           (a) =>
-            `<div class="admin-item"><div><strong>${esc(a.name)}</strong><small>${esc(a.role)} · ${esc(a.id)}</small></div>${a.role === 'admin' ? `<button class="danger" onclick="removeAdmin('${esc(a.id)}')">Remove</button>` : `<span class="tag">OWNER</span>`}</div>`
+            `<div class="admin-item"><div class="admin-item-info"><strong class="admin-item-title">${esc(a.name)}</strong><small class="admin-item-link">${esc(a.role)} · ${esc(a.id)}</small></div><div class="admin-item-actions">${a.role === 'admin' ? `<button class="danger" onclick="removeAdmin('${esc(a.id)}')">Remove</button>` : `<span class="tag">OWNER</span>`}</div></div>`
         )
         .join('');
     }

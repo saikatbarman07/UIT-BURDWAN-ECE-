@@ -1240,8 +1240,12 @@ body.dark .blob {
 
 .admin-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 18px;
+}
+
+.admin-grid > .card:only-child {
+  grid-column: 1 / -1;
 }
 
 .admin-form {
@@ -1268,19 +1272,76 @@ body.dark .blob {
 .admin-item {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
-  padding: 12px 16px;
+  padding: 13px 16px;
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   background: var(--surface2);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-.admin-item small {
+.admin-item:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+}
+
+.admin-item > div:first-child,
+.admin-item-info {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.admin-item strong,
+.admin-item-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--text-heading);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.admin-item small,
+.admin-item-link {
   color: var(--muted);
   display: block;
-  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+a.admin-item-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+a.admin-item-link:hover {
+  text-decoration: underline;
+}
+
+.admin-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.admin-item .danger,
+.admin-item button {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .danger {
