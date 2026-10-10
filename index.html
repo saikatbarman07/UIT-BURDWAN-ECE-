@@ -1,705 +1,795 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>UIT Burdwan — Department of ECE</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Liquid Glassmorphism & 3D Styles -->
-    <link rel="stylesheet" href="./style.css" />
+  <title>UIT Burdwan — Department of ECE</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  </head>
+  <!-- Google Fonts: Space Grotesk, Outfit, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <!-- Liquid Glassmorphism & 3D Styles -->
+  <link rel="stylesheet" href="./style.css" />
 
-  <body>
-    <!-- Liquid Aurora 3D Background -->
-    <div class="liquid-bg" aria-hidden="true">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-      <div class="blob blob-4"></div>
-      <div class="glass-grid-overlay"></div>
-    </div>
-    <main class="app">
-      <div class="wrap">
-        <header class="top">
-          <nav class="nav">
-            <div class="brand" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
-              <div class="mark">ECE</div>
-              <div>
-                <span class="brand-title">UIT BURDWAN</span>
-                <span class="brand-sub">Department of ECE</span>
-              </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+  <!-- Liquid Aurora 3D Background -->
+  <div class="liquid-bg" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="glass-grid-overlay"></div>
+  </div>
+  <main class="app">
+    <div class="wrap">
+      <header class="top">
+        <nav class="nav">
+          <div class="brand" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+            <div class="mark">ECE</div>
+            <div>
+              <span class="brand-title">UIT BURDWAN</span>
+              <span class="brand-sub">Department of ECE</span>
             </div>
+          </div>
 
-            <div class="navlinks">
-              <button onclick="scrollToId('updates')"><span>📢</span> Updates</button>
-              <button onclick="scrollToId('resources')"><span>📚</span> Resources</button>
-              <button onclick="scrollToId('notices')"><span>📌</span> Notices</button>
-              <button onclick="toggleTheme()" id="themeToggle">🌙 Dark</button>
-              <button onclick="adminInfo()">🔐 Admin</button>
-            </div>
-          </nav>
-        </header>
+          <!-- Mobile Header Quick Admin Button -->
+          <div class="mobile-actions">
+            <button class="mobile-admin-btn admin-toggle-btn" onclick="adminInfo()" aria-label="Admin Control">
+              <span>🔐</span> <span class="admin-btn-label">Admin</span>
+            </button>
+          </div>
 
-        <!-- 3D LIQUID HERO SECTION -->
-        <section class="hero" id="heroSection">
-          <div class="hero-glow-orb"></div>
-          <div class="hero-content">
-            <div class="eyebrow-container">
-              <span class="eyebrow"
-                ><span class="pulsing-radar"></span> Official Student Portal</span
-              >
-              <span class="hero-badge">⚡ Real-time ECE Hub</span>
-            </div>
+          <div class="navlinks">
+            <button onclick="scrollToId('updates')"><span>📢</span> Updates</button>
+            <button onclick="scrollToId('resources')"><span>📚</span> Resources</button>
+            <button onclick="scrollToId('notices')"><span>📌</span> Notices</button>
+            <button onclick="toggleTheme()" id="themeToggle">🌙 Dark</button>
+            <button onclick="adminInfo()" class="admin-toggle-btn">
+              <span>🔐</span> <span class="admin-btn-label">Admin</span>
+            </button>
+          </div>
+        </nav>
+      </header>
 
-            <h1>UIT BURDWAN</h1>
+      <!-- 3D LIQUID HERO SECTION -->
+      <section class="hero" id="heroSection">
+        <div class="hero-glow-orb"></div>
+        <div class="hero-content">
+          <div class="eyebrow-container">
+            <span class="eyebrow"><span class="pulsing-radar"></span> Official Student Portal</span>
+            <span class="hero-badge">⚡ Real-time ECE Hub</span>
+          </div>
+
+          <h1>UIT BURDWAN</h1>
+          <div class="hero-subtitle-wrap">
+            <span class="hero-subtitle-pill">Engineering & Technology</span>
             <h2>DEPARTMENT OF ELECTRONICS & COMMUNICATION</h2>
+          </div>
 
-            <p>
-              Your modern, unified department platform — real-time notices, syllabus, exam routines,
-              curated lecture notes and semester resources in one liquid glass experience.
-            </p>
+          <p>
+            Your modern, unified department platform — real-time notices, syllabus, exam routines,
+            curated lecture notes and semester resources in one liquid glass experience.
+          </p>
 
-            <div class="actions">
-              <button class="primary" onclick="scrollToId('updates')">
-                <span>View latest updates</span>
-                <span>→</span>
+          <div class="actions">
+            <button class="primary" onclick="scrollToId('updates')">
+              <span>View latest updates</span>
+              <span>→</span>
+            </button>
+            <button class="ghost" onclick="scrollToId('resources')">
+              <span>Browse resources</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADMIN PANEL -->
+
+      <section class="section admin-panel" id="adminPanel">
+        <div class="sectionhead">
+          <div class="sectionhead-title-wrap">
+            <div class="section-eyebrow"><span class="eyebrow-dot lock-dot"></span> SECURE ACCESS</div>
+            <h3 class="highlighted-heading">Admin <span class="text-highlight">Control Centre</span></h3>
+            <p>Manage updates, notices and department resource links from here.</p>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px">
+            <span class="tag" id="roleBadge"> OWNER </span>
+            <button class="ghost" id="signOutButton" onclick="logoutAdmin()">Sign out</button>
+          </div>
+        </div>
+
+        <div class="admin-grid">
+          <!-- PUBLISH UPDATE -->
+
+          <div class="card">
+            <div class="admin-form">
+              <div class="editing-banner hidden" id="postEditingBanner">
+                <span>✏️ Editing update: <strong id="postEditingTitle"></strong></span>
+                <button class="ghost cancel-btn" type="button" onclick="cancelEditPost()">
+                  Cancel
+                </button>
+              </div>
+
+              <input class="field" id="postTitle" placeholder="Post title" />
+
+              <input class="field" id="postCategory" placeholder="Category e.g. NOTICE" />
+
+              <textarea class="field" id="postText" placeholder="Write the update..."></textarea>
+
+              <input class="field" id="postLink" type="url" placeholder="Paste Google Drive share link" />
+
+              <button class="primary" id="publishPostBtn" onclick="publishPost()">
+                Publish update
               </button>
-              <button class="ghost" onclick="scrollToId('resources')">
-                <span>Browse resources</span>
-              </button>
-            </div>
-          </div>
-        </section>
 
-        <!-- ADMIN PANEL -->
-
-        <section class="section admin-panel" id="adminPanel">
-          <div class="sectionhead">
-            <div>
-              <h3>Admin control centre</h3>
-
-              <p>Manage updates, notices and department resource links from here.</p>
-            </div>
-
-            <div style="display: flex; align-items: center; gap: 8px">
-              <span class="tag" id="roleBadge"> OWNER </span>
-              <button class="ghost" id="signOutButton" onclick="logoutAdmin()">Sign out</button>
+              <div class="status" id="adminStatus"></div>
             </div>
           </div>
 
-          <div class="admin-grid">
-            <!-- PUBLISH UPDATE -->
+          <!-- MANAGE ADMINS -->
 
-            <div class="card">
-              <div class="admin-form">
-                <input class="field" id="postTitle" placeholder="Post title" />
+          <div class="card" id="manageAdminsCard">
+            <h4 style="margin-top: 0">Manage admins</h4>
 
-                <input class="field" id="postCategory" placeholder="Category e.g. NOTICE" />
+            <p>Add trusted people who can publish content. The owner remains the highest role.</p>
 
-                <textarea class="field" id="postText" placeholder="Write the update..."></textarea>
+            <div class="admin-form">
+              <input class="field" id="adminName" placeholder="Admin name" />
 
-                <input
-                  class="field"
-                  id="postLink"
-                  type="url"
-                  placeholder="Paste Google Drive share link"
-                />
+              <input class="field" id="adminEmail" type="email" placeholder="Existing Supabase account email" />
 
-                <button class="primary" onclick="publishPost()">Publish update</button>
-
-                <div class="status" id="adminStatus"></div>
-              </div>
+              <button class="ghost" onclick="addAdmin()">Add admin</button>
             </div>
 
-            <!-- MANAGE ADMINS -->
-
-            <div class="card" id="manageAdminsCard">
-              <h4 style="margin-top: 0">Manage admins</h4>
-
-              <p>Add trusted people who can publish content. The owner remains the highest role.</p>
-
-              <div class="admin-form">
-                <input class="field" id="adminName" placeholder="Admin name" />
-
-                <input
-                  class="field"
-                  id="adminEmail"
-                  type="email"
-                  placeholder="Existing Supabase account email"
-                />
-
-                <button class="ghost" onclick="addAdmin()">Add admin</button>
-              </div>
-
-              <div class="admin-list" id="adminList"></div>
-            </div>
+            <div class="admin-list" id="adminList"></div>
           </div>
-
-          <!-- RESOURCES -->
-
-          <div class="admin-grid" style="margin-top: 14px">
-            <div class="card">
-              <h4 style="margin-top: 0">Department resources</h4>
-
-              <p>Change the Google Drive link for each main resource.</p>
-
-              <div class="admin-form">
-                <input
-                  class="field"
-                  id="noticeResourceLink"
-                  type="url"
-                  placeholder="Department Notices Google Drive link"
-                />
-
-                <input
-                  class="field"
-                  id="studyResourceLink"
-                  type="url"
-                  placeholder="Study Materials Google Drive link"
-                />
-
-                <input
-                  class="field"
-                  id="routineResourceLink"
-                  type="url"
-                  placeholder="Department Routine Google Drive link"
-                />
-
-                <button class="ghost" onclick="saveResources()">Save resource links</button>
-
-                <div class="status" id="resourceStatus"></div>
-              </div>
-            </div>
-
-            <!-- MULTIPLE STUDY LINKS -->
-
-            <div class="card">
-              <h4 style="margin-top: 0">Study material links</h4>
-
-              <p>Add as many separate study links as you want.</p>
-
-              <div class="admin-form">
-                <input
-                  class="field"
-                  id="studyLinkName"
-                  placeholder="Link name e.g. Engineering Mathematics"
-                />
-
-                <input
-                  class="field"
-                  id="studyLinkUrl"
-                  type="url"
-                  placeholder="Paste Google Drive link"
-                />
-
-                <button class="ghost" onclick="addStudyLink()">＋ Add study link</button>
-
-                <div class="admin-list" id="studyLinkAdminList"></div>
-
-                <div class="status" id="studyLinkStatus"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- NOTICE MANAGEMENT -->
-
-          <div class="admin-grid" style="margin-top: 14px">
-            <div class="card">
-              <h4 style="margin-top: 0">Notice board</h4>
-
-              <div class="admin-form">
-                <input class="field" id="noticeTitle" placeholder="Notice title" />
-
-                <textarea class="field" id="noticeText" placeholder="Notice description"></textarea>
-
-                <input
-                  class="field"
-                  id="noticeLink"
-                  type="url"
-                  placeholder="Optional Google Drive link"
-                />
-
-                <button class="ghost" onclick="addNotice()">Add notice</button>
-
-                <div class="status" id="noticeStatus"></div>
-              </div>
-
-              <div class="admin-list" id="noticeAdminList"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- UPDATES -->
-
-        <section class="section" id="updates">
-          <div class="sectionhead">
-            <div>
-              <h3>Latest updates</h3>
-
-              <p>Recent information for ECE students.</p>
-            </div>
-
-            <input
-              class="search"
-              id="search"
-              placeholder="Search updates..."
-              oninput="filterCards()"
-            />
-          </div>
-
-          <div class="grid" id="updateGrid">
-            <article class="card searchable default-update" data-default-id="welcome">
-              <div class="cardtop">
-                <div class="icon">📢</div>
-
-                <span class="tag"> UPDATE </span>
-              </div>
-
-              <h4>Welcome to the ECE Student Hub</h4>
-
-              <p>
-                This portal is the central place for department announcements, documents, study
-                material and important student information.
-              </p>
-
-              <button class="danger default-admin-remove" onclick="removeDefaultUpdate('welcome')">
-                Remove update
-              </button>
-            </article>
-
-            <article class="card searchable default-update" data-default-id="academic">
-              <div class="cardtop">
-                <div class="icon">📅</div>
-
-                <span class="tag"> ACADEMIC </span>
-              </div>
-
-              <h4>Class & examination updates</h4>
-
-              <p>
-                New routines, exam schedules and academic notices can be added here as soon as they
-                are available.
-              </p>
-
-              <button class="danger default-admin-remove" onclick="removeDefaultUpdate('academic')">
-                Remove update
-              </button>
-            </article>
-
-            <article class="card searchable default-update" data-default-id="important">
-              <div class="cardtop">
-                <div class="icon">📌</div>
-
-                <span class="tag"> IMPORTANT </span>
-              </div>
-
-              <h4>Check this section regularly</h4>
-
-              <p>
-                Keep this page bookmarked so you don't miss newly posted notices, PDFs or other
-                department information.
-              </p>
-
-              <button
-                class="danger default-admin-remove"
-                onclick="removeDefaultUpdate('important')"
-              >
-                Remove update
-              </button>
-            </article>
-          </div>
-        </section>
+        </div>
 
         <!-- RESOURCES -->
 
-        <section class="section" id="resources">
-          <div class="sectionhead">
-            <div>
-              <h3>Resources & documents</h3>
+        <div class="admin-grid" style="margin-top: 14px">
+          <div class="card">
+            <h4 style="margin-top: 0">Department resources</h4>
 
-              <p>
-                Department Notices, Study Materials, Department Routine and additional study links.
-              </p>
-            </div>
+            <p>Change the Google Drive link for each main resource.</p>
 
-            <span class="tag"> ADMIN MANAGED </span>
-          </div>
+            <div class="admin-form">
+              <input class="field" id="noticeResourceLink" type="url"
+                placeholder="Department Notices Google Drive link" />
 
-          <div class="grid" id="resourceGrid"></div>
+              <input class="field" id="studyResourceLink" type="url" placeholder="Study Materials Google Drive link" />
 
-          <div id="studyLinksPublic" style="margin-top: 14px"></div>
-        </section>
+              <input class="field" id="routineResourceLink" type="url"
+                placeholder="Department Routine Google Drive link" />
 
-        <!-- NOTICE BOARD -->
+              <button class="ghost" onclick="saveResources()">Save resource links</button>
 
-        <section class="section" id="notices">
-          <div class="sectionhead">
-            <div>
-              <h3>Notice board</h3>
-
-              <p>A quick timeline of important posts.</p>
+              <div class="status" id="resourceStatus"></div>
             </div>
           </div>
 
-          <div id="noticeGrid" class="notice-feed"></div>
-        </section>
+          <!-- MULTIPLE STUDY LINKS -->
 
-        <!-- FOOTER -->
+          <div class="card">
+            <h4 style="margin-top: 0">Study material links</h4>
 
-        <footer class="footer">
-          <span> UIT BURDWAN · DEPARTMENT OF ECE </span>
+            <p>Add as many separate study links as you want.</p>
 
-          <span> Student-maintained information portal </span>
-        </footer>
+            <div class="admin-form">
+              <input class="field" id="studyLinkName" placeholder="Link name e.g. Engineering Mathematics" />
 
-        <!-- MOBILE NAV -->
+              <input class="field" id="studyLinkUrl" type="url" placeholder="Paste Google Drive link" />
 
-        <nav class="mobilebar" aria-label="Mobile navigation">
-          <button onclick="scrollToId('updates')">
-            <span>📢</span>
-            Updates
-          </button>
+              <button class="ghost" onclick="addStudyLink()">＋ Add study link</button>
 
-          <button onclick="scrollToId('resources')">
-            <span>📚</span>
-            Resources
-          </button>
+              <div class="admin-list" id="studyLinkAdminList"></div>
 
-          <button onclick="scrollToId('notices')">
-            <span>📌</span>
-            Notices
-          </button>
-
-          <button onclick="toggleTheme()">
-            <span>🌓</span>
-            Theme
-          </button>
-        </nav>
-      </div>
-
-      <!-- ADMIN LOGIN -->
-      <div
-        class="auth-modal"
-        id="loginModal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="loginTitle"
-      >
-        <div class="auth-box">
-          <button class="auth-close" onclick="closeLoginModal()" aria-label="Close">×</button>
-          <h3 id="loginTitle">ECE Portal Admin</h3>
-          <p>Sign in with the Supabase account authorized for portal administration.</p>
-          <div class="admin-form">
-            <input
-              class="field"
-              id="loginEmail"
-              type="email"
-              autocomplete="username"
-              value="saikatbarman226@gmail.com"
-              placeholder="Admin email"
-            />
-            <input
-              class="field"
-              id="loginPassword"
-              type="password"
-              autocomplete="current-password"
-              placeholder="Password"
-              onkeydown="if (event.key === 'Enter') loginAdmin();"
-            />
-            <div class="status" id="loginStatus"></div>
-          </div>
-          <div class="auth-actions">
-            <button class="ghost" onclick="closeLoginModal()">Cancel</button>
-            <button class="primary" onclick="loginAdmin()">Sign in</button>
+              <div class="status" id="studyLinkStatus"></div>
+            </div>
           </div>
         </div>
+
+        <!-- NOTICE MANAGEMENT -->
+
+        <div class="admin-grid" style="margin-top: 14px">
+          <div class="card">
+            <h4 style="margin-top: 0">Notice board</h4>
+
+            <div class="admin-form">
+              <div class="editing-banner hidden" id="noticeEditingBanner">
+                <span>✏️ Editing notice: <strong id="noticeEditingTitle"></strong></span>
+                <button class="ghost cancel-btn" type="button" onclick="cancelEditNotice()">
+                  Cancel
+                </button>
+              </div>
+
+              <input class="field" id="noticeTitle" placeholder="Notice title" />
+
+              <textarea class="field" id="noticeText" placeholder="Notice description"></textarea>
+
+              <input class="field" id="noticeLink" type="url" placeholder="Optional Google Drive link" />
+
+              <button class="ghost" id="noticeSubmitBtn" onclick="addNotice()">Add notice</button>
+
+              <div class="status" id="noticeStatus"></div>
+            </div>
+
+            <div class="admin-list" id="noticeAdminList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UPDATES -->
+
+      <section class="section" id="updates">
+        <div class="sectionhead">
+          <div class="sectionhead-title-wrap">
+            <div class="section-eyebrow"><span class="eyebrow-dot pulse-dot"></span> LIVE ANNOUNCEMENTS</div>
+            <h3 class="highlighted-heading">Latest <span class="text-highlight">Updates</span></h3>
+            <p>Recent announcements, academic circulars, and departmental updates for ECE students.</p>
+          </div>
+
+          <input class="search" id="search" placeholder="Search updates..." oninput="filterCards()" />
+        </div>
+
+        <div class="grid" id="updateGrid">
+          <article class="card searchable default-update" data-default-id="welcome">
+            <div class="cardtop">
+              <div class="icon">📢</div>
+
+              <span class="tag"> UPDATE </span>
+            </div>
+
+            <h4>Welcome to the ECE Student Hub</h4>
+
+            <p>
+              This portal is the central place for department announcements, documents, study
+              material and important student information.
+            </p>
+
+            <button class="danger default-admin-remove" onclick="removeDefaultUpdate('welcome')">
+              Remove update
+            </button>
+          </article>
+
+          <article class="card searchable default-update" data-default-id="academic">
+            <div class="cardtop">
+              <div class="icon">📅</div>
+
+              <span class="tag"> ACADEMIC </span>
+            </div>
+
+            <h4>Class & examination updates</h4>
+
+            <p>
+              New routines, exam schedules and academic notices can be added here as soon as they
+              are available.
+            </p>
+
+            <button class="danger default-admin-remove" onclick="removeDefaultUpdate('academic')">
+              Remove update
+            </button>
+          </article>
+
+          <article class="card searchable default-update" data-default-id="important">
+            <div class="cardtop">
+              <div class="icon">📌</div>
+
+              <span class="tag"> IMPORTANT </span>
+            </div>
+
+            <h4>Check this section regularly</h4>
+
+            <p>
+              Keep this page bookmarked so you don't miss newly posted notices, PDFs or other
+              department information.
+            </p>
+
+            <button class="danger default-admin-remove" onclick="removeDefaultUpdate('important')">
+              Remove update
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <!-- RESOURCES -->
+
+      <section class="section" id="resources">
+        <div class="sectionhead">
+          <div class="sectionhead-title-wrap">
+            <div class="section-eyebrow"><span class="eyebrow-dot blue-dot"></span> ACADEMIC REPOSITORY</div>
+            <h3 class="highlighted-heading">Resources &amp; <span class="text-highlight">Documents</span></h3>
+            <p>
+              Department notices, study materials, semester routines, and verified Google Drive links.
+            </p>
+          </div>
+
+          <span class="tag"> ADMIN MANAGED </span>
+        </div>
+
+        <div class="grid" id="resourceGrid"></div>
+
+        <div id="studyLinksPublic" style="margin-top: 14px"></div>
+      </section>
+
+      <!-- NOTICE BOARD -->
+
+      <section class="section" id="notices">
+        <div class="sectionhead">
+          <div class="sectionhead-title-wrap">
+            <div class="section-eyebrow"><span class="eyebrow-dot orange-dot"></span> OFFICIAL BULLETIN</div>
+            <h3 class="highlighted-heading">Notice <span class="text-highlight">Board</span></h3>
+            <p>A chronological timeline of official departmental circulars and announcements.</p>
+          </div>
+        </div>
+
+        <div id="noticeGrid" class="notice-feed"></div>
+      </section>
+
+      <!-- FOOTER -->
+
+      <footer class="footer">
+        <span> UIT BURDWAN · DEPARTMENT OF ECE </span>
+
+        <span> Student-maintained information portal </span>
+      </footer>
+
+      <!-- MOBILE NAV -->
+
+      <nav class="mobilebar" aria-label="Mobile navigation">
+        <button onclick="scrollToId('updates')">
+          <span>📢</span>
+          Updates
+        </button>
+
+        <button onclick="scrollToId('resources')">
+          <span>📚</span>
+          Resources
+        </button>
+
+        <button onclick="scrollToId('notices')">
+          <span>📌</span>
+          Notices
+        </button>
+
+        <button onclick="toggleTheme()">
+          <span>🌓</span>
+          Theme
+        </button>
+
+        <button onclick="adminInfo()" class="admin-toggle-btn" id="mobileAdminBtn" aria-label="Admin Control">
+          <span>🔐</span>
+          <span class="admin-btn-label">Admin</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- ADMIN LOGIN -->
+    <div class="auth-modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <div class="auth-box">
+        <button class="auth-close" onclick="closeLoginModal()" aria-label="Close">×</button>
+        <h3 id="loginTitle">ECE Portal Admin</h3>
+        <p>Sign in with the Supabase account authorized for portal administration.</p>
+        <div class="admin-form">
+          <input class="field" id="loginEmail" type="email" autocomplete="username" value="saikatbarman226@gmail.com"
+            placeholder="Admin email" />
+          <input class="field" id="loginPassword" type="password" autocomplete="current-password" placeholder="Password"
+            onkeydown="if (event.key === 'Enter') loginAdmin();" />
+          <div class="status" id="loginStatus"></div>
+        </div>
+        <div class="auth-actions">
+          <button class="ghost" onclick="closeLoginModal()">Cancel</button>
+          <button class="primary" onclick="loginAdmin()">Sign in</button>
+        </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <!-- ========================================================= -->
-    <!-- SINGLE CLEAN JAVASCRIPT -->
-    <!-- ========================================================= -->
+  <!-- ========================================================= -->
+  <!-- SINGLE CLEAN JAVASCRIPT -->
+  <!-- ========================================================= -->
 
-    <script>
-      const SUPABASE_URL = 'https://jwexadekromjrdgzvrky.supabase.co';
-      const SUPABASE_ANON_KEY = 'sb_publishable_YbmAshm_A0jF1LYK8PqJ0w_07kN3nL9';
+  <script>
+    const SUPABASE_URL = 'https://jwexadekromjrdgzvrky.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_YbmAshm_A0jF1LYK8PqJ0w_07kN3nL9';
 
-      const { createClient } = window.supabase;
-      const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const { createClient } = window.supabase;
+    const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-      const THEME_STORE = 'uit_ece_theme';
-      const LEGACY_STORE = 'uit_ece_portal_v1';
-      const MIGRATION_STORE = 'uit_ece_supabase_migrated_v1';
+    const THEME_STORE = 'uit_ece_theme';
+    const LEGACY_STORE = 'uit_ece_portal_v1';
+    const MIGRATION_STORE = 'uit_ece_supabase_migrated_v1';
 
-      let currentUser = null;
-      let currentRole = null;
-      let currentAdminName = '';
-      let realtimeChannel = null;
-      let resources = {
-        notice: { id: 'notice', title: 'Department Notices', desc: 'PDF documents', link: '' },
-        study: { id: 'study', title: 'Study Materials', desc: 'Notes & question papers', link: '' },
-        routine: {
-          id: 'routine',
-          title: 'Department Routine',
-          desc: 'Latest routine files',
-          link: '',
-        },
-      };
-      let studyLinks = [];
-      let hiddenDefaults = new Set();
-      let posts = [];
-      let notices = [];
+    let currentUser = null;
+    let currentRole = null;
+    let currentAdminName = '';
+    let realtimeChannel = null;
+    let resources = {
+      notice: { id: 'notice', title: 'Department Notices', desc: 'PDF documents', link: '' },
+      study: { id: 'study', title: 'Study Materials', desc: 'Notes & question papers', link: '' },
+      routine: {
+        id: 'routine',
+        title: 'Department Routine',
+        desc: 'Latest routine files',
+        link: '',
+      },
+    };
+    let studyLinks = [];
+    let hiddenDefaults = new Set();
+    let posts = [];
+    let notices = [];
+    let editingPostId = null;
+    let editingNoticeId = null;
 
-      function esc(value) {
-        return String(value ?? '').replace(
-          /[&<>"']/g,
-          (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]
-        );
+    function esc(value) {
+      return String(value ?? '').replace(
+        /[&<>"']/g,
+        (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]
+      );
+    }
+
+    function validUrl(url) {
+      if (!url) return true;
+      if (url.length > 500 || /\s/.test(url)) return false;
+      try {
+        const u = new URL(url);
+        return (u.protocol === 'http:' || u.protocol === 'https:') && !/\s/.test(u.href);
+      } catch {
+        return false;
       }
+    }
 
-      function validUrl(url) {
-        if (!url) return true;
-        if (url.length > 500 || /\s/.test(url)) return false;
+    function setStatus(id, message, isError = false) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = message;
+      el.style.color = isError ? '#dc2626' : '';
+    }
+
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        const yOffset = -76;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+
+    function applyTheme() {
+      const saved = localStorage.getItem(THEME_STORE) || 'light';
+      document.body.classList.toggle('dark', saved === 'dark');
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.textContent = saved === 'dark' ? '☀️ Light' : '🌙 Dark';
+    }
+
+    function toggleTheme() {
+      const current = document.body.classList.contains('dark') ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.body.classList.toggle('dark', next === 'dark');
+      localStorage.setItem(THEME_STORE, next);
+      applyTheme();
+    }
+
+    function openLoginModal() {
+      const modal = document.getElementById('loginModal');
+      if (!modal) return;
+      modal.classList.add('open');
+      const email = document.getElementById('loginEmail');
+      if (email) email.focus();
+    }
+
+    function closeLoginModal() {
+      const modal = document.getElementById('loginModal');
+      if (modal) modal.classList.remove('open');
+      setStatus('loginStatus', '');
+    }
+
+    async function adminInfo() {
+      if (!currentUser) {
+        openLoginModal();
+        return;
+      }
+      if (!currentRole) {
+        setStatus('loginStatus', 'This account is not authorized as an ECE portal admin.', true);
+        openLoginModal();
+        return;
+      }
+      const panel = document.getElementById('adminPanel');
+      if (panel) {
+        const willOpen = !panel.classList.contains('open');
+        panel.classList.toggle('open');
+        if (willOpen) {
+          setTimeout(() => {
+            panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 50);
+        }
+      }
+      renderAdminState();
+    }
+
+    async function loginAdmin() {
+      const email = document.getElementById('loginEmail')?.value.trim();
+      const password = document.getElementById('loginPassword')?.value;
+      if (!email || !password) {
+        setStatus('loginStatus', 'Enter your email and password.', true);
+        return;
+      }
+      setStatus('loginStatus', 'Signing in…');
+      const { data, error } = await db.auth.signInWithPassword({ email, password });
+      if (error) {
+        setStatus('loginStatus', error.message, true);
+        return;
+      }
+      await loadAuthUser(data.user);
+      if (!currentRole) {
         try {
-          const u = new URL(url);
-          return (u.protocol === 'http:' || u.protocol === 'https:') && !/\s/.test(u.href);
-        } catch {
-          return false;
-        }
-      }
-
-      function setStatus(id, message, isError = false) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.textContent = message;
-        el.style.color = isError ? '#dc2626' : '';
-      }
-
-      function scrollToId(id) {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
-
-      function applyTheme() {
-        const saved = localStorage.getItem(THEME_STORE) || 'light';
-        document.body.classList.toggle('dark', saved === 'dark');
-        const btn = document.getElementById('themeToggle');
-        if (btn) btn.textContent = saved === 'dark' ? '☀️ Light' : '🌙 Dark';
-      }
-
-      function toggleTheme() {
-        const current = document.body.classList.contains('dark') ? 'dark' : 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.body.classList.toggle('dark', next === 'dark');
-        localStorage.setItem(THEME_STORE, next);
-        applyTheme();
-      }
-
-      function openLoginModal() {
-        const modal = document.getElementById('loginModal');
-        if (!modal) return;
-        modal.classList.add('open');
-        const email = document.getElementById('loginEmail');
-        if (email) email.focus();
-      }
-
-      function closeLoginModal() {
-        const modal = document.getElementById('loginModal');
-        if (modal) modal.classList.remove('open');
-        setStatus('loginStatus', '');
-      }
-
-      async function adminInfo() {
-        if (!currentUser) {
-          openLoginModal();
-          return;
-        }
-        if (!currentRole) {
-          setStatus('loginStatus', 'This account is not authorized as an ECE portal admin.', true);
-          openLoginModal();
-          return;
-        }
-        const panel = document.getElementById('adminPanel');
-        if (panel) panel.classList.toggle('open');
-        renderAdminState();
-      }
-
-      async function loginAdmin() {
-        const email = document.getElementById('loginEmail')?.value.trim();
-        const password = document.getElementById('loginPassword')?.value;
-        if (!email || !password) {
-          setStatus('loginStatus', 'Enter your email and password.', true);
-          return;
-        }
-        setStatus('loginStatus', 'Signing in…');
-        const { data, error } = await db.auth.signInWithPassword({ email, password });
-        if (error) {
-          setStatus('loginStatus', error.message, true);
-          return;
-        }
-        await loadAuthUser(data.user);
-        if (!currentRole) {
           await db.auth.signOut();
-          document.getElementById('adminPanel')?.classList.remove('open');
-          renderAdminState();
-          setStatus(
-            'loginStatus',
-            'Login worked, but this account is not an authorized portal admin.',
-            true
-          );
-          return;
-        }
-        closeLoginModal();
-        document.getElementById('adminPanel')?.classList.add('open');
-        renderAdminState();
-        await migrateLegacyDataIfNeeded();
-        await loadAllData();
-      }
-
-      async function logoutAdmin() {
-        await db.auth.signOut();
+        } catch (_) {}
         currentUser = null;
-        currentRole = null;
         currentAdminName = '';
         document.getElementById('adminPanel')?.classList.remove('open');
         renderAdminState();
+        renderPosts();
+        renderNotices();
+        setStatus(
+          'loginStatus',
+          'Login worked, but this account is not an authorized portal admin.',
+          true
+        );
+        return;
       }
+      closeLoginModal();
+      const panel = document.getElementById('adminPanel');
+      if (panel) {
+        panel.classList.add('open');
+        setTimeout(() => {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+      renderAdminState();
+      await migrateLegacyDataIfNeeded();
+      await loadAllData();
+    }
 
-      async function loadAuthUser(user) {
-        currentUser = user || null;
+    async function logoutAdmin() {
+      try {
+        await db.auth.signOut();
+      } catch (err) {
+        console.warn('Sign out warning:', err);
+        try {
+          await db.auth.signOut({ scope: 'local' });
+        } catch (_) {}
+      }
+      try {
+        for (let i = localStorage.length - 1; i >= 0; i--) {
+          const key = localStorage.key(i);
+          if (key && (key.startsWith('sb-') || key.includes('supabase.auth.token'))) {
+            localStorage.removeItem(key);
+          }
+        }
+      } catch (_) {}
+
+      currentUser = null;
+      currentRole = null;
+      currentAdminName = '';
+      cancelEditPost();
+      cancelEditNotice();
+      document.getElementById('adminPanel')?.classList.remove('open');
+      renderAdminState();
+      renderPosts();
+      renderNotices();
+      renderStudyLinkAdmin();
+      renderNoticeAdmin();
+      renderResourceInputs();
+      const adminList = document.getElementById('adminList');
+      if (adminList) adminList.innerHTML = '';
+    }
+
+    async function loadAuthUser(user) {
+      currentUser = user || null;
+      currentRole = null;
+      currentAdminName = '';
+      if (!currentUser) return;
+      const { data, error } = await db
+        .from('admin_users')
+        .select('id,name,role')
+        .eq('id', currentUser.id)
+        .maybeSingle();
+      if (error) {
+        console.error('Admin role lookup failed:', error);
         currentRole = null;
         currentAdminName = '';
-        if (!currentUser) return;
-        const { data, error } = await db
-          .from('admin_users')
-          .select('id,name,role')
-          .eq('id', currentUser.id)
-          .maybeSingle();
-        if (error) {
-          console.error('Admin role lookup failed:', error);
-          currentRole = null;
-          currentAdminName = '';
-          return;
+        return;
+      }
+      if (currentUser && currentUser.email === 'saikatbarman226@gmail.com') {
+        currentRole = data?.role || 'owner';
+        currentAdminName = data?.name || 'Saikat Barman';
+      } else if (data && (data.role === 'owner' || data.role === 'admin')) {
+        currentRole = data.role;
+        currentAdminName = data.name || currentUser.email || 'Admin';
+      }
+    }
+
+    function renderAdminState() {
+      const badge = document.getElementById('roleBadge');
+      const panel = document.getElementById('adminPanel');
+      const roleText = currentRole === 'owner' ? 'Owner' : 'Admin';
+      if (badge) badge.textContent = currentRole ? currentRole.toUpperCase() : 'ADMIN';
+
+      document.querySelectorAll('.admin-toggle-btn').forEach((btn) => {
+        const label = btn.querySelector('.admin-btn-label');
+        if (label) {
+          label.textContent = currentRole ? roleText : 'Admin';
+        } else {
+          btn.innerHTML = currentRole ? `<span>🔐</span> ${roleText}` : '<span>🔐</span> Admin';
         }
-        if (currentUser && currentUser.email === 'saikatbarman226@gmail.com') {
-          currentRole = data?.role || 'owner';
-          currentAdminName = data?.name || 'Saikat Barman';
-        } else if (data && (data.role === 'owner' || data.role === 'admin')) {
-          currentRole = data.role;
-          currentAdminName = data.name || currentUser.email || 'Admin';
-        }
+      });
+
+      document.body.classList.toggle('is-admin', Boolean(currentRole));
+
+      const signout = document.getElementById('signOutButton');
+      if (signout) signout.classList.toggle('hidden', !currentRole);
+      const manageCard = document.getElementById('manageAdminsCard');
+      if (manageCard) manageCard.classList.toggle('hidden', currentRole !== 'owner');
+      const ownerOnly = document.querySelectorAll('.owner-only');
+      ownerOnly.forEach((el) => el.classList.toggle('hidden', currentRole !== 'owner'));
+      if (!currentRole && panel) panel.classList.remove('open');
+
+      if (!currentRole) {
+        document
+          .querySelectorAll('.card-admin-actions, .notice-admin-actions, .default-admin-remove')
+          .forEach((el) => el.remove());
+      }
+    }
+
+    async function loadAllData() {
+      const [postsRes, noticesRes, resourcesRes, linksRes, hiddenRes] = await Promise.all([
+        db.from('posts').select('*').order('created_at', { ascending: false }),
+        db.from('notices').select('*').order('created_at', { ascending: false }),
+        db.from('resources').select('*'),
+        db.from('study_links').select('*').order('created_at', { ascending: false }),
+        db.from('hidden_defaults').select('id,hidden'),
+      ]);
+
+      if (postsRes.error) console.error(postsRes.error);
+      if (noticesRes.error) console.error(noticesRes.error);
+      if (resourcesRes.error) console.error(resourcesRes.error);
+      if (linksRes.error) console.error(linksRes.error);
+      if (hiddenRes.error) console.error(hiddenRes.error);
+
+      posts = postsRes.data || [];
+      notices = noticesRes.data || [];
+      studyLinks = linksRes.data || [];
+      hiddenDefaults = new Set((hiddenRes.data || []).filter((x) => x.hidden).map((x) => x.id));
+
+      for (const key of ['notice', 'study', 'routine']) {
+        const row = (resourcesRes.data || []).find((r) => r.key === key);
+        if (row)
+          resources[key] = {
+            id: key,
+            title: row.title,
+            desc: row.description || '',
+            link: row.link || '',
+          };
       }
 
-      function renderAdminState() {
-        const badge = document.getElementById('roleBadge');
-        const panel = document.getElementById('adminPanel');
-        const adminButton = [...document.querySelectorAll('button')].find((b) =>
-          b.textContent.includes('Admin')
-        );
-        if (badge) badge.textContent = currentRole ? currentRole.toUpperCase() : 'ADMIN';
-        if (adminButton)
-          adminButton.textContent = currentRole
-            ? `🔐 ${currentRole === 'owner' ? 'Owner' : 'Admin'}`
-            : '🔐 Admin';
-        const signout = document.getElementById('signOutButton');
-        if (signout) signout.classList.toggle('hidden', !currentRole);
-        const manageCard = document.getElementById('manageAdminsCard');
-        if (manageCard) manageCard.classList.toggle('hidden', currentRole !== 'owner');
-        const ownerOnly = document.querySelectorAll('.owner-only');
-        ownerOnly.forEach((el) => el.classList.toggle('hidden', currentRole !== 'owner'));
-        if (!currentRole && panel) panel.classList.remove('open');
-      }
+      renderPosts();
+      renderResources();
+      renderNotices();
+      init3DTilt();
+      renderStudyLinkAdmin();
+      renderNoticeAdmin();
+      renderResourceInputs();
+      applyDefaultVisibility();
+      if (currentRole) renderAdmins();
+    }
 
-      async function loadAllData() {
-        const [postsRes, noticesRes, resourcesRes, linksRes, hiddenRes] = await Promise.all([
-          db.from('posts').select('*').order('created_at', { ascending: false }),
-          db.from('notices').select('*').order('created_at', { ascending: false }),
-          db.from('resources').select('*'),
-          db.from('study_links').select('*').order('created_at', { ascending: false }),
-          db.from('hidden_defaults').select('id,hidden'),
-        ]);
+    function renderPosts() {
+      const grid = document.getElementById('updateGrid');
+      if (!grid) return;
+      const defaults = [...grid.querySelectorAll('.default-update')];
+      defaults.forEach((card) => {
+        const id = card.dataset.defaultId;
+        card.style.display = hiddenDefaults.has(id) ? 'none' : '';
+      });
 
-        if (postsRes.error) console.error(postsRes.error);
-        if (noticesRes.error) console.error(noticesRes.error);
-        if (resourcesRes.error) console.error(resourcesRes.error);
-        if (linksRes.error) console.error(linksRes.error);
-        if (hiddenRes.error) console.error(hiddenRes.error);
-
-        posts = postsRes.data || [];
-        notices = noticesRes.data || [];
-        studyLinks = linksRes.data || [];
-        hiddenDefaults = new Set((hiddenRes.data || []).filter((x) => x.hidden).map((x) => x.id));
-
-        for (const key of ['notice', 'study', 'routine']) {
-          const row = (resourcesRes.data || []).find((r) => r.key === key);
-          if (row)
-            resources[key] = {
-              id: key,
-              title: row.title,
-              desc: row.description || '',
-              link: row.link || '',
-            };
-        }
-
-        renderPosts();
-        init3DTilt();
-        renderResources();
-        init3DTilt();
-        renderNotices();
-        init3DTilt();
-        renderStudyLinkAdmin();
-        renderNoticeAdmin();
-        renderResourceInputs();
-        applyDefaultVisibility();
-        if (currentRole) renderAdmins();
-      }
-
-      function renderPosts() {
-        const grid = document.getElementById('updateGrid');
-        if (!grid) return;
-        const defaults = [...grid.querySelectorAll('.default-update')];
-        defaults.forEach((card) => {
-          const id = card.dataset.defaultId;
-          card.style.display = hiddenDefaults.has(id) ? 'none' : '';
-        });
-
-        grid.querySelectorAll("[data-admin-post='1']").forEach((el) => el.remove());
-        posts.forEach((post) => {
-          const article = document.createElement('article');
-          article.className = 'card searchable';
-          article.dataset.adminPost = '1';
-          article.innerHTML = `
+      grid.querySelectorAll("[data-admin-post='1']").forEach((el) => el.remove());
+      posts.forEach((post) => {
+        const article = document.createElement('article');
+        article.className = 'card searchable';
+        article.dataset.adminPost = '1';
+        article.innerHTML = `
         <div class="cardtop"><div class="icon">📢</div><span class="tag">${esc(post.category || 'UPDATE')}</span></div>
         <h4>${esc(post.title)}</h4>
         <p>${esc(post.body || '')}</p>
-        ${post.link ? `<a class="download" href="${esc(post.link)}" target="_blank" rel="noopener">Open resource →</a>` : ''}
-        ${currentRole ? `<button class="danger" style="margin-top:12px" onclick="deletePost('${esc(post.id)}')">Delete</button>` : ''}
+        ${post.link ? `
+          <div class="card-action-row">
+            <a class="download card-download-btn" href="${esc(post.link)}" target="_blank" rel="noopener">
+              <span>Open resource</span>
+              <span class="arrow-icon">→</span>
+            </a>
+          </div>` : ''}
+        ${currentRole
+            ? `
+          <div class="card-admin-actions">
+            <button class="ghost edit-btn" onclick="editPost('${esc(post.id)}')">✏️ Edit</button>
+            <button class="danger" onclick="deletePost('${esc(post.id)}')">Delete</button>
+          </div>`
+            : ''
+          }
       `;
-          grid.appendChild(article);
-        });
-        filterCards();
-      }
+        grid.appendChild(article);
+      });
+      filterCards();
+    }
 
-      async function publishPost() {
-        if (!currentRole) return openLoginModal();
-        const title = document.getElementById('postTitle')?.value.trim();
-        const category = document.getElementById('postCategory')?.value.trim() || 'UPDATE';
-        const body = document.getElementById('postText')?.value.trim();
-        const link = document.getElementById('postLink')?.value.trim() || null;
-        if (!title || !body)
-          return setStatus('adminStatus', 'Add a title and update text first.', true);
-        if (!validUrl(link))
-          return setStatus('adminStatus', 'Please enter a valid http/https link.', true);
+    function editPost(id) {
+      const post = posts.find((p) => p.id === id);
+      if (!post) return;
+      editingPostId = id;
+      const panel = document.getElementById('adminPanel');
+      if (panel) panel.classList.add('open');
+      const titleInput = document.getElementById('postTitle');
+      const catInput = document.getElementById('postCategory');
+      const textInput = document.getElementById('postText');
+      const linkInput = document.getElementById('postLink');
+      if (titleInput) titleInput.value = post.title || '';
+      if (catInput) catInput.value = post.category || '';
+      if (textInput) textInput.value = post.body || '';
+      if (linkInput) linkInput.value = post.link || '';
+      const banner = document.getElementById('postEditingBanner');
+      const bannerTitle = document.getElementById('postEditingTitle');
+      const btn = document.getElementById('publishPostBtn');
+      if (banner) banner.classList.remove('hidden');
+      if (bannerTitle) bannerTitle.textContent = post.title || 'Untitled';
+      if (btn) btn.textContent = 'Save update changes';
+      scrollToId('adminPanel');
+      if (titleInput) titleInput.focus();
+    }
+
+    function cancelEditPost() {
+      editingPostId = null;
+      const banner = document.getElementById('postEditingBanner');
+      const btn = document.getElementById('publishPostBtn');
+      if (banner) banner.classList.add('hidden');
+      if (btn) btn.textContent = 'Publish update';
+      ['postTitle', 'postCategory', 'postText', 'postLink'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      setStatus('adminStatus', '');
+    }
+
+    async function publishPost() {
+      if (!currentRole) return openLoginModal();
+      const title = document.getElementById('postTitle')?.value.trim();
+      const category = document.getElementById('postCategory')?.value.trim() || 'UPDATE';
+      const body = document.getElementById('postText')?.value.trim();
+      const link = document.getElementById('postLink')?.value.trim() || null;
+      if (!title || !body)
+        return setStatus('adminStatus', 'Add a title and update text first.', true);
+      if (!validUrl(link))
+        return setStatus('adminStatus', 'Please enter a valid http/https link.', true);
+
+      if (editingPostId) {
+        setStatus('adminStatus', 'Saving update changes…');
+        const { error } = await db
+          .from('posts')
+          .update({ title, category, body, link })
+          .eq('id', editingPostId);
+        if (error) return setStatus('adminStatus', error.message, true);
+        cancelEditPost();
+        setStatus('adminStatus', 'Update saved successfully.');
+      } else {
         setStatus('adminStatus', 'Publishing…');
         const { error } = await db
           .from('posts')
@@ -710,121 +800,168 @@
           if (el) el.value = '';
         });
         setStatus('adminStatus', 'Update published.');
-        await loadAllData();
       }
+      await loadAllData();
+    }
 
-      async function deletePost(id) {
-        if (!currentRole) return;
-        if (!confirm('Delete this update?')) return;
-        const { error } = await db.from('posts').delete().eq('id', id);
-        if (error) return alert(error.message);
-        await loadAllData();
-      }
+    async function deletePost(id) {
+      if (!currentRole) return;
+      if (!confirm('Delete this update?')) return;
+      const { error } = await db.from('posts').delete().eq('id', id);
+      if (error) return alert(error.message);
+      await loadAllData();
+    }
 
-      function renderResources() {
-        const grid = document.getElementById('resourceGrid');
-        if (!grid) return;
-        const items = [
-          ['notice', '📄'],
-          ['study', '📚'],
-          ['routine', '🗓️'],
-        ];
-        grid.innerHTML = items
-          .map(([key, icon]) => {
-            const r = resources[key];
-            return `<article class="card"><div class="resource"><div class="icon">${icon}</div><div class="resourcebody"><strong>${esc(r.title)}</strong><span>${esc(r.desc)}</span></div>${r.link ? `<a class="download" href="${esc(r.link)}" target="_blank" rel="noopener">View</a>` : `<span class="download">Add link</span>`}</div></article>`;
-          })
-          .join('');
-        renderStudyLinks();
-      }
+    function renderResources() {
+      const grid = document.getElementById('resourceGrid');
+      if (!grid) return;
+      const items = [
+        ['notice', '📄'],
+        ['study', '📚'],
+        ['routine', '🗓️'],
+      ];
+      grid.innerHTML = items
+        .map(([key, icon]) => {
+          const r = resources[key];
+          return `<article class="card"><div class="resource"><div class="icon">${icon}</div><div class="resourcebody"><strong>${esc(r.title)}</strong><span>${esc(r.desc)}</span></div>${r.link ? `<a class="download" href="${esc(r.link)}" target="_blank" rel="noopener">View</a>` : `<span class="download">Add link</span>`}</div></article>`;
+        })
+        .join('');
+      renderStudyLinks();
+    }
 
-      function renderResourceInputs() {
-        const map = {
-          notice: 'noticeResourceLink',
-          study: 'studyResourceLink',
-          routine: 'routineResourceLink',
-        };
-        Object.entries(map).forEach(([key, id]) => {
-          const el = document.getElementById(id);
-          if (el) el.value = resources[key].link || '';
-        });
-      }
+    function renderResourceInputs() {
+      const map = {
+        notice: 'noticeResourceLink',
+        study: 'studyResourceLink',
+        routine: 'routineResourceLink',
+      };
+      Object.entries(map).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.value = resources[key].link || '';
+      });
+    }
 
-      async function saveResources() {
-        if (!currentRole) return openLoginModal();
-        const links = {
-          notice: document.getElementById('noticeResourceLink')?.value.trim() || '',
-          study: document.getElementById('studyResourceLink')?.value.trim() || '',
-          routine: document.getElementById('routineResourceLink')?.value.trim() || '',
-        };
-        if (!Object.values(links).every(validUrl))
-          return setStatus('resourceStatus', 'Use valid http/https links.', true);
-        setStatus('resourceStatus', 'Saving…');
-        const rows = Object.entries(links).map(([key, link]) => ({
-          key,
-          title: resources[key].title,
-          description: resources[key].desc,
-          link: link || null,
-        }));
-        const { error } = await db.from('resources').upsert(rows, { onConflict: 'key' });
-        if (error) return setStatus('resourceStatus', error.message, true);
-        setStatus('resourceStatus', 'Resource links saved.');
-        await loadAllData();
-      }
+    async function saveResources() {
+      if (!currentRole) return openLoginModal();
+      const links = {
+        notice: document.getElementById('noticeResourceLink')?.value.trim() || '',
+        study: document.getElementById('studyResourceLink')?.value.trim() || '',
+        routine: document.getElementById('routineResourceLink')?.value.trim() || '',
+      };
+      if (!Object.values(links).every(validUrl))
+        return setStatus('resourceStatus', 'Use valid http/https links.', true);
+      setStatus('resourceStatus', 'Saving…');
+      const rows = Object.entries(links).map(([key, link]) => ({
+        key,
+        title: resources[key].title,
+        description: resources[key].desc,
+        link: link || null,
+      }));
+      const { error } = await db.from('resources').upsert(rows, { onConflict: 'key' });
+      if (error) return setStatus('resourceStatus', error.message, true);
+      setStatus('resourceStatus', 'Resource links saved.');
+      await loadAllData();
+    }
 
-      function renderStudyLinks() {
-        const box = document.getElementById('studyLinksPublic');
-        if (!box) return;
-        if (!studyLinks.length) return (box.innerHTML = '');
-        box.innerHTML = `<div class="card"><div class="sectionhead" style="margin-bottom:12px"><div><h4 style="margin:0">Additional study materials</h4><p>Extra study links added by the department.</p></div></div><div class="grid">${studyLinks.map((item) => `<article class="card"><div class="resource"><div class="icon">🔗</div><div class="resourcebody"><strong>${esc(item.name)}</strong><span>Study resource</span></div><a class="download" href="${esc(item.link)}" target="_blank" rel="noopener">Open</a></div></article>`).join('')}</div></div>`;
-      }
+    function renderStudyLinks() {
+      const box = document.getElementById('studyLinksPublic');
+      if (!box) return;
+      if (!studyLinks.length) return (box.innerHTML = '');
+      box.innerHTML = `<div class="card"><div class="sectionhead" style="margin-bottom:12px"><div><h4 style="margin:0">Additional study materials</h4><p>Extra study links added by the department.</p></div></div><div class="grid">${studyLinks.map((item) => `<article class="card"><div class="resource"><div class="icon">🔗</div><div class="resourcebody"><strong>${esc(item.name)}</strong><span>Study resource</span></div><a class="download" href="${esc(item.link)}" target="_blank" rel="noopener">Open</a></div></article>`).join('')}</div></div>`;
+    }
 
-      async function addStudyLink() {
-        if (!currentRole) return openLoginModal();
-        const name = document.getElementById('studyLinkName')?.value.trim();
-        const link = document.getElementById('studyLinkUrl')?.value.trim();
-        if (!name || !link) return setStatus('studyLinkStatus', 'Enter a name and link.', true);
-        if (!validUrl(link))
-          return setStatus('studyLinkStatus', 'Please enter a valid http/https link.', true);
-        setStatus('studyLinkStatus', 'Adding…');
+    async function addStudyLink() {
+      if (!currentRole) return openLoginModal();
+      const name = document.getElementById('studyLinkName')?.value.trim();
+      const link = document.getElementById('studyLinkUrl')?.value.trim();
+      if (!name || !link) return setStatus('studyLinkStatus', 'Enter a name and link.', true);
+      if (!validUrl(link))
+        return setStatus('studyLinkStatus', 'Please enter a valid http/https link.', true);
+      setStatus('studyLinkStatus', 'Adding…');
+      const { error } = await db
+        .from('study_links')
+        .insert({ name, link, created_by: currentUser.id });
+      if (error) return setStatus('studyLinkStatus', error.message, true);
+      document.getElementById('studyLinkName').value = '';
+      document.getElementById('studyLinkUrl').value = '';
+      setStatus('studyLinkStatus', 'Study link added.');
+      await loadAllData();
+    }
+
+    async function deleteStudyLink(id) {
+      if (!currentRole || !confirm('Remove this study link?')) return;
+      const { error } = await db.from('study_links').delete().eq('id', id);
+      if (error) return alert(error.message);
+      await loadAllData();
+    }
+
+    function renderStudyLinkAdmin() {
+      const box = document.getElementById('studyLinkAdminList');
+      if (!box) return;
+      if (!studyLinks.length) return (box.innerHTML = '<small>No extra study links yet.</small>');
+      box.innerHTML = studyLinks
+        .map(
+          (item) =>
+            `<div class="admin-item"><div><strong>${esc(item.name)}</strong><small>${esc(item.link)}</small></div><button class="danger" onclick="deleteStudyLink('${esc(item.id)}')">Remove</button></div>`
+        )
+        .join('');
+    }
+
+    function editNotice(id) {
+      const notice = notices.find((n) => n.id === id);
+      if (!notice) return;
+      editingNoticeId = id;
+      const panel = document.getElementById('adminPanel');
+      if (panel) panel.classList.add('open');
+      const titleInput = document.getElementById('noticeTitle');
+      const textInput = document.getElementById('noticeText');
+      const linkInput = document.getElementById('noticeLink');
+      if (titleInput) titleInput.value = notice.title || '';
+      if (textInput) textInput.value = notice.body || notice.text || '';
+      if (linkInput) linkInput.value = notice.link || '';
+      const banner = document.getElementById('noticeEditingBanner');
+      const bannerTitle = document.getElementById('noticeEditingTitle');
+      const btn = document.getElementById('noticeSubmitBtn');
+      if (banner) banner.classList.remove('hidden');
+      if (bannerTitle) bannerTitle.textContent = notice.title || 'Untitled';
+      if (btn) btn.textContent = 'Save notice changes';
+      scrollToId('adminPanel');
+      if (titleInput) titleInput.focus();
+    }
+
+    function cancelEditNotice() {
+      editingNoticeId = null;
+      const banner = document.getElementById('noticeEditingBanner');
+      const btn = document.getElementById('noticeSubmitBtn');
+      if (banner) banner.classList.add('hidden');
+      if (btn) btn.textContent = 'Add notice';
+      ['noticeTitle', 'noticeText', 'noticeLink'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      setStatus('noticeStatus', '');
+    }
+
+    async function addNotice() {
+      if (!currentRole) return openLoginModal();
+      const title = document.getElementById('noticeTitle')?.value.trim();
+      const text = document.getElementById('noticeText')?.value.trim();
+      const link = document.getElementById('noticeLink')?.value.trim() || null;
+      if (!title || !text)
+        return setStatus('noticeStatus', 'Add a notice title and description first.', true);
+      if (!validUrl(link))
+        return setStatus('noticeStatus', 'Please enter a valid http/https link.', true);
+
+      if (editingNoticeId) {
+        setStatus('noticeStatus', 'Saving notice changes…');
         const { error } = await db
-          .from('study_links')
-          .insert({ name, link, created_by: currentUser.id });
-        if (error) return setStatus('studyLinkStatus', error.message, true);
-        document.getElementById('studyLinkName').value = '';
-        document.getElementById('studyLinkUrl').value = '';
-        setStatus('studyLinkStatus', 'Study link added.');
-        await loadAllData();
-      }
-
-      async function deleteStudyLink(id) {
-        if (!currentRole || !confirm('Remove this study link?')) return;
-        const { error } = await db.from('study_links').delete().eq('id', id);
-        if (error) return alert(error.message);
-        await loadAllData();
-      }
-
-      function renderStudyLinkAdmin() {
-        const box = document.getElementById('studyLinkAdminList');
-        if (!box) return;
-        if (!studyLinks.length) return (box.innerHTML = '<small>No extra study links yet.</small>');
-        box.innerHTML = studyLinks
-          .map(
-            (item) =>
-              `<div class="admin-item"><div><strong>${esc(item.name)}</strong><small>${esc(item.link)}</small></div><button class="danger" onclick="deleteStudyLink('${esc(item.id)}')">Remove</button></div>`
-          )
-          .join('');
-      }
-
-      async function addNotice() {
-        if (!currentRole) return openLoginModal();
-        const title = document.getElementById('noticeTitle')?.value.trim();
-        const text = document.getElementById('noticeText')?.value.trim();
-        const link = document.getElementById('noticeLink')?.value.trim() || null;
-        if (!title || !text)
-          return setStatus('noticeStatus', 'Add a notice title and description first.', true);
-        if (!validUrl(link))
-          return setStatus('noticeStatus', 'Please enter a valid http/https link.', true);
+          .from('notices')
+          .update({ title, text, link })
+          .eq('id', editingNoticeId);
+        if (error) return setStatus('noticeStatus', error.message, true);
+        cancelEditNotice();
+        setStatus('noticeStatus', 'Notice saved successfully.');
+      } else {
         setStatus('noticeStatus', 'Adding…');
         const { error } = await db
           .from('notices')
@@ -835,33 +972,34 @@
           if (el) el.value = '';
         });
         setStatus('noticeStatus', 'Notice added.');
-        await loadAllData();
       }
+      await loadAllData();
+    }
 
-      async function deleteNotice(id) {
-        if (!currentRole || !confirm('Remove this notice?')) return;
-        const { error } = await db.from('notices').delete().eq('id', id);
-        if (error) return alert(error.message);
-        await loadAllData();
+    async function deleteNotice(id) {
+      if (!currentRole || !confirm('Remove this notice?')) return;
+      const { error } = await db.from('notices').delete().eq('id', id);
+      if (error) return alert(error.message);
+      await loadAllData();
+    }
+
+    function renderNotices() {
+      const grid = document.getElementById('noticeGrid');
+      if (!grid) return;
+      if (!notices.length) {
+        grid.innerHTML =
+          '<div class="card" style="text-align:center;padding:32px"><p style="color:var(--muted);margin:0;font-size:14.5px">No official notices published yet.</p></div>';
+        return;
       }
-
-      function renderNotices() {
-        const grid = document.getElementById('noticeGrid');
-        if (!grid) return;
-        if (!notices.length) {
-          grid.innerHTML =
-            '<div class="card" style="text-align:center;padding:32px"><p style="color:var(--muted);margin:0;font-size:14.5px">No official notices published yet.</p></div>';
-          return;
-        }
-        grid.innerHTML = notices
-          .map((n) => {
-            const dateObj = n.created_at ? new Date(n.created_at) : new Date();
-            const day = dateObj.toLocaleDateString('en-IN', { day: '2-digit' });
-            const month = dateObj.toLocaleDateString('en-IN', { month: 'short' });
-            const year = dateObj.toLocaleDateString('en-IN', { year: 'numeric' });
-            const fullDate = `${day} ${month} ${year}`;
-            const desc = n.body || n.text || '';
-            return `<article class="notice-card">
+      grid.innerHTML = notices
+        .map((n) => {
+          const dateObj = n.created_at ? new Date(n.created_at) : new Date();
+          const day = dateObj.toLocaleDateString('en-IN', { day: '2-digit' });
+          const month = dateObj.toLocaleDateString('en-IN', { month: 'short' });
+          const year = dateObj.toLocaleDateString('en-IN', { year: 'numeric' });
+          const fullDate = `${day} ${month} ${year}`;
+          const desc = n.body || n.text || '';
+          return `<article class="notice-card">
               <div class="notice-date-badge">
                 <span class="notice-day">${esc(day)}</span>
                 <span class="notice-month">${esc(month)}</span>
@@ -871,254 +1009,252 @@
                 <div class="notice-header-row">
                   <span class="notice-pill">${esc(n.tag || 'NOTICE')}</span>
                   <span class="notice-timestamp">📅 ${esc(fullDate)}</span>
-                  ${currentRole ? `<button class="danger notice-del-btn" onclick="deleteNotice('${esc(n.id)}')">Delete</button>` : ''}
+                  ${currentRole
+              ? `
+                    <div class="notice-admin-actions" style="display:flex;gap:6px;margin-left:auto;align-items:center">
+                      <button class="ghost notice-edit-btn" onclick="editNotice('${esc(n.id)}')">✏️ Edit</button>
+                      <button class="danger notice-del-btn" onclick="deleteNotice('${esc(n.id)}')">Delete</button>
+                    </div>`
+              : ''
+            }
                 </div>
                 <h4 class="notice-title">${esc(n.title)}</h4>
                 ${desc ? `<p class="notice-desc">${esc(desc)}</p>` : ''}
                 ${n.link ? `<div class="notice-actions"><a class="notice-download-btn" href="${esc(n.link)}" target="_blank" rel="noopener"><span>Open Document</span> →</a></div>` : ''}
               </div>
             </article>`;
-          })
-          .join('');
-      }
+        })
+        .join('');
+    }
 
-      function renderNoticeAdmin() {
-        const box = document.getElementById('noticeAdminList');
-        if (!box) return;
-        if (!notices.length) return (box.innerHTML = '<small>No notices yet.</small>');
-        box.innerHTML = notices
-          .map(
-            (n) =>
-              `<div class="admin-item"><div><strong>${esc(n.title)}</strong><small>${esc(n.created_at ? new Date(n.created_at).toLocaleDateString('en-IN') : '')}</small></div><button class="danger" onclick="deleteNotice('${esc(n.id)}')">Remove</button></div>`
-          )
-          .join('');
-      }
+    function renderNoticeAdmin() {
+      const box = document.getElementById('noticeAdminList');
+      if (!box) return;
+      if (!notices.length) return (box.innerHTML = '<small>No notices yet.</small>');
+      box.innerHTML = notices
+        .map(
+          (n) =>
+            `<div class="admin-item"><div><strong>${esc(n.title)}</strong><small>${esc(n.created_at ? new Date(n.created_at).toLocaleDateString('en-IN') : '')}</small></div><div style="display:flex;gap:6px"><button class="ghost edit-btn" style="padding:4px 10px;font-size:12px" onclick="editNotice('${esc(n.id)}')">Edit</button><button class="danger" onclick="deleteNotice('${esc(n.id)}')">Remove</button></div></div>`
+        )
+        .join('');
+    }
 
-      async function removeDefaultUpdate(id) {
-        if (!currentRole) return openLoginModal();
-        const { error } = await db
-          .from('hidden_defaults')
-          .upsert({ id, hidden: true, created_by: currentUser.id }, { onConflict: 'id' });
-        if (error) return alert(error.message);
-        hiddenDefaults.add(id);
-        applyDefaultVisibility();
-      }
+    async function removeDefaultUpdate(id) {
+      if (!currentRole) return openLoginModal();
+      const { error } = await db
+        .from('hidden_defaults')
+        .upsert({ id, hidden: true, created_by: currentUser.id }, { onConflict: 'id' });
+      if (error) return alert(error.message);
+      hiddenDefaults.add(id);
+      applyDefaultVisibility();
+    }
 
-      function applyDefaultVisibility() {
-        document.querySelectorAll('.default-update').forEach((card) => {
-          card.style.display = hiddenDefaults.has(card.dataset.defaultId) ? 'none' : '';
-        });
-      }
-
-      function filterCards() {
-        const search = (document.getElementById('search')?.value || '').trim().toLowerCase();
-        document.querySelectorAll('#updateGrid .searchable').forEach((card) => {
-          card.style.display =
-            !search || card.textContent.toLowerCase().includes(search) ? '' : 'none';
-        });
-        applyDefaultVisibility();
-      }
-
-      async function renderAdmins() {
-        const box = document.getElementById('adminList');
-        if (!box || currentRole !== 'owner') return;
-        const { data, error } = await db
-          .from('admin_users')
-          .select('id,name,role,created_at')
-          .order('created_at', { ascending: true });
-        if (error) return (box.innerHTML = `<small>${esc(error.message)}</small>`);
-        box.innerHTML = (data || [])
-          .map(
-            (a) =>
-              `<div class="admin-item"><div><strong>${esc(a.name)}</strong><small>${esc(a.role)} · ${esc(a.id)}</small></div>${a.role === 'admin' ? `<button class="danger" onclick="removeAdmin('${esc(a.id)}')">Remove</button>` : `<span class="tag">OWNER</span>`}</div>`
-          )
-          .join('');
-      }
-
-      async function addAdmin() {
-        if (currentRole !== 'owner') return;
-        const name = document.getElementById('adminName')?.value.trim();
-        const email = document.getElementById('adminEmail')?.value.trim();
-        if (!name || !email)
-          return setStatus(
-            'adminStatus',
-            'Enter the admin name and the email of an existing Supabase user.',
-            true
-          );
-        setStatus('adminStatus', 'Adding admin…');
-        const { error } = await db.rpc('add_admin_by_email', {
-          target_email: email,
-          target_name: name,
-        });
-        if (error) return setStatus('adminStatus', error.message, true);
-        document.getElementById('adminName').value = '';
-        document.getElementById('adminEmail').value = '';
-        setStatus('adminStatus', 'Admin added.');
-        await renderAdmins();
-      }
-
-      async function removeAdmin(id) {
-        if (currentRole !== 'owner' || !confirm("Remove this admin's portal access?")) return;
-        const { error } = await db.rpc('remove_admin', { target_id: id });
-        if (error) return alert(error.message);
-        await renderAdmins();
-      }
-
-      function getLegacyState() {
-        try {
-          return JSON.parse(localStorage.getItem(LEGACY_STORE) || 'null');
-        } catch {
-          return null;
-        }
-      }
-
-      async function migrateLegacyDataIfNeeded() {
-        if (currentRole !== 'owner' || localStorage.getItem(MIGRATION_STORE) === '1') return;
-        const legacy = getLegacyState();
-        if (!legacy) {
-          localStorage.setItem(MIGRATION_STORE, '1');
-          return;
-        }
-        const status = document.getElementById('adminStatus');
-        if (status) status.textContent = 'Importing your previous local data into Supabase…';
-        try {
-          if (Array.isArray(legacy.posts) && legacy.posts.length) {
-            const rows = legacy.posts.map((p) => ({
-              title: p.title || 'Untitled',
-              category: p.category || 'UPDATE',
-              body: p.text || p.body || '',
-              link: p.link || null,
-              published: true,
-              created_by: currentUser.id,
-            }));
-            await db.from('posts').insert(rows);
-          }
-          if (Array.isArray(legacy.notices) && legacy.notices.length) {
-            const rows = legacy.notices.map((n) => ({
-              title: n.title || 'Notice',
-              text: n.text || '',
-              link: n.link || null,
-              tag: n.tag || 'NOTICE',
-              created_by: currentUser.id,
-            }));
-            await db.from('notices').insert(rows);
-          }
-          const lr = legacy.resources || {};
-          const resourceRows = ['notice', 'study', 'routine'].map((key) => {
-            const r = lr[key] || resources[key];
-            return {
-              key,
-              title: r.title || resources[key].title,
-              description: r.desc || r.description || resources[key].desc,
-              link: r.link || null,
-            };
-          });
-          await db.from('resources').upsert(resourceRows, { onConflict: 'key' });
-          if (Array.isArray(lr.studyLinks) && lr.studyLinks.length) {
-            const rows = lr.studyLinks.map((x) => ({ name: x.name || 'Study link', link: x.link }));
-            await db.from('study_links').insert(rows);
-          }
-          if (Array.isArray(legacy.hiddenDefaults) && legacy.hiddenDefaults.length) {
-            await db.from('hidden_defaults').upsert(
-              legacy.hiddenDefaults.map((id) => ({ id, hidden: true, created_by: currentUser.id })),
-              { onConflict: 'id' }
-            );
-          }
-          localStorage.setItem(MIGRATION_STORE, '1');
-          if (status) status.textContent = 'Previous local data imported successfully.';
-        } catch (error) {
-          console.error(error);
-          if (status)
-            status.textContent =
-              'Some old local data could not be imported. Check the browser console.';
-        }
-      }
-
-      function setupRealtime() {
-        if (realtimeChannel) db.removeChannel(realtimeChannel);
-        realtimeChannel = db
-          .channel('uit-ece-portal-live')
-          .on('postgres_changes', { event: '*', schema: 'public', table: 'posts' }, loadAllData)
-          .on('postgres_changes', { event: '*', schema: 'public', table: 'notices' }, loadAllData)
-          .on('postgres_changes', { event: '*', schema: 'public', table: 'resources' }, loadAllData)
-          .on(
-            'postgres_changes',
-            { event: '*', schema: 'public', table: 'study_links' },
-            loadAllData
-          )
-          .on(
-            'postgres_changes',
-            { event: '*', schema: 'public', table: 'hidden_defaults' },
-            loadAllData
-          )
-          .subscribe();
-      }
-
-      // 3D Liquid Tilt Interaction
-      function init3DTilt() {
-        const elements = document.querySelectorAll('.card, .hero');
-        elements.forEach((el) => {
-          if (el.dataset.tiltBound) return;
-          el.dataset.tiltBound = '1';
-
-          el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = ((y - centerY) / centerY) * -6;
-            const rotateY = ((x - centerX) / centerX) * 6;
-            el.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px) scale3d(1.012, 1.012, 1.012)`;
-          });
-
-          el.addEventListener('mouseleave', () => {
-            el.style.transform =
-              'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale3d(1, 1, 1)';
-          });
-        });
-      }
-
-      async function init() {
-        applyTheme();
-        const { data } = await db.auth.getSession();
-        await loadAuthUser(data.session?.user || null);
-        renderAdminState();
-        await loadAllData();
-        if (currentRole) {
-          await migrateLegacyDataIfNeeded();
-          await loadAllData();
-        }
-        setupRealtime();
-      }
-
-      window.addEventListener('DOMContentLoaded', init);
-      db.auth.onAuthStateChange(async (_event, session) => {
-        await loadAuthUser(session?.user || null);
-        renderAdminState();
-        if (currentRole) {
-          await loadAllData();
-          renderAdmins();
-        }
+    function applyDefaultVisibility() {
+      document.querySelectorAll('.default-update').forEach((card) => {
+        card.style.display = hiddenDefaults.has(card.dataset.defaultId) ? 'none' : '';
       });
+    }
 
-      window.scrollToId = scrollToId;
-      window.toggleTheme = toggleTheme;
-      window.adminInfo = adminInfo;
-      window.loginAdmin = loginAdmin;
-      window.closeLoginModal = closeLoginModal;
-      window.logoutAdmin = logoutAdmin;
-      window.publishPost = publishPost;
-      window.deletePost = deletePost;
-      window.addAdmin = addAdmin;
-      window.removeAdmin = removeAdmin;
-      window.saveResources = saveResources;
-      window.addStudyLink = addStudyLink;
-      window.deleteStudyLink = deleteStudyLink;
-      window.addNotice = addNotice;
-      window.deleteNotice = deleteNotice;
-      window.removeDefaultUpdate = removeDefaultUpdate;
-      window.filterCards = filterCards;
-    </script>
-  </body>
+    function filterCards() {
+      const search = (document.getElementById('search')?.value || '').trim().toLowerCase();
+      document.querySelectorAll('#updateGrid .searchable').forEach((card) => {
+        card.style.display =
+          !search || card.textContent.toLowerCase().includes(search) ? '' : 'none';
+      });
+      applyDefaultVisibility();
+    }
+
+    async function renderAdmins() {
+      const box = document.getElementById('adminList');
+      if (!box || currentRole !== 'owner') return;
+      const { data, error } = await db
+        .from('admin_users')
+        .select('id,name,role,created_at')
+        .order('created_at', { ascending: true });
+      if (error) return (box.innerHTML = `<small>${esc(error.message)}</small>`);
+      box.innerHTML = (data || [])
+        .map(
+          (a) =>
+            `<div class="admin-item"><div><strong>${esc(a.name)}</strong><small>${esc(a.role)} · ${esc(a.id)}</small></div>${a.role === 'admin' ? `<button class="danger" onclick="removeAdmin('${esc(a.id)}')">Remove</button>` : `<span class="tag">OWNER</span>`}</div>`
+        )
+        .join('');
+    }
+
+    async function addAdmin() {
+      if (currentRole !== 'owner') return;
+      const name = document.getElementById('adminName')?.value.trim();
+      const email = document.getElementById('adminEmail')?.value.trim();
+      if (!name || !email)
+        return setStatus(
+          'adminStatus',
+          'Enter the admin name and the email of an existing Supabase user.',
+          true
+        );
+      setStatus('adminStatus', 'Adding admin…');
+      const { error } = await db.rpc('add_admin_by_email', {
+        target_email: email,
+        target_name: name,
+      });
+      if (error) return setStatus('adminStatus', error.message, true);
+      document.getElementById('adminName').value = '';
+      document.getElementById('adminEmail').value = '';
+      setStatus('adminStatus', 'Admin added.');
+      await renderAdmins();
+    }
+
+    async function removeAdmin(id) {
+      if (currentRole !== 'owner' || !confirm("Remove this admin's portal access?")) return;
+      const { error } = await db.rpc('remove_admin', { target_id: id });
+      if (error) return alert(error.message);
+      await renderAdmins();
+    }
+
+    function getLegacyState() {
+      try {
+        return JSON.parse(localStorage.getItem(LEGACY_STORE) || 'null');
+      } catch {
+        return null;
+      }
+    }
+
+    async function migrateLegacyDataIfNeeded() {
+      if (currentRole !== 'owner' || localStorage.getItem(MIGRATION_STORE) === '1') return;
+      const legacy = getLegacyState();
+      if (!legacy) {
+        localStorage.setItem(MIGRATION_STORE, '1');
+        return;
+      }
+      const status = document.getElementById('adminStatus');
+      if (status) status.textContent = 'Importing your previous local data into Supabase…';
+      try {
+        if (Array.isArray(legacy.posts) && legacy.posts.length) {
+          const rows = legacy.posts.map((p) => ({
+            title: p.title || 'Untitled',
+            category: p.category || 'UPDATE',
+            body: p.text || p.body || '',
+            link: p.link || null,
+            published: true,
+            created_by: currentUser.id,
+          }));
+          await db.from('posts').insert(rows);
+        }
+        if (Array.isArray(legacy.notices) && legacy.notices.length) {
+          const rows = legacy.notices.map((n) => ({
+            title: n.title || 'Notice',
+            text: n.text || '',
+            link: n.link || null,
+            tag: n.tag || 'NOTICE',
+            created_by: currentUser.id,
+          }));
+          await db.from('notices').insert(rows);
+        }
+        const lr = legacy.resources || {};
+        const resourceRows = ['notice', 'study', 'routine'].map((key) => {
+          const r = lr[key] || resources[key];
+          return {
+            key,
+            title: r.title || resources[key].title,
+            description: r.desc || r.description || resources[key].desc,
+            link: r.link || null,
+          };
+        });
+        await db.from('resources').upsert(resourceRows, { onConflict: 'key' });
+        if (Array.isArray(lr.studyLinks) && lr.studyLinks.length) {
+          const rows = lr.studyLinks.map((x) => ({ name: x.name || 'Study link', link: x.link }));
+          await db.from('study_links').insert(rows);
+        }
+        if (Array.isArray(legacy.hiddenDefaults) && legacy.hiddenDefaults.length) {
+          await db.from('hidden_defaults').upsert(
+            legacy.hiddenDefaults.map((id) => ({ id, hidden: true, created_by: currentUser.id })),
+            { onConflict: 'id' }
+          );
+        }
+        localStorage.setItem(MIGRATION_STORE, '1');
+        if (status) status.textContent = 'Previous local data imported successfully.';
+      } catch (error) {
+        console.error(error);
+        if (status)
+          status.textContent =
+            'Some old local data could not be imported. Check the browser console.';
+      }
+    }
+
+    function setupRealtime() {
+      if (realtimeChannel) db.removeChannel(realtimeChannel);
+      realtimeChannel = db
+        .channel('uit-ece-portal-live')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'posts' }, loadAllData)
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'notices' }, loadAllData)
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'resources' }, loadAllData)
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'study_links' },
+          loadAllData
+        )
+        .on(
+          'postgres_changes',
+          { event: '*', schema: 'public', table: 'hidden_defaults' },
+          loadAllData
+        )
+        .subscribe();
+    }
+
+    // 100% GPU-composited CSS transitions replace JS mousemove listeners for stutter-free 120fps scrolling
+    function init3DTilt() {}
+
+    async function init() {
+      applyTheme();
+      const { data } = await db.auth.getSession();
+      await loadAuthUser(data.session?.user || null);
+      renderAdminState();
+      await loadAllData();
+      if (currentRole) {
+        await migrateLegacyDataIfNeeded();
+        await loadAllData();
+      }
+      setupRealtime();
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+    db.auth.onAuthStateChange(async (_event, session) => {
+      await loadAuthUser(session?.user || null);
+      renderAdminState();
+      if (currentRole) {
+        await loadAllData();
+        renderAdmins();
+      } else {
+        renderPosts();
+        renderNotices();
+        renderStudyLinkAdmin();
+        renderNoticeAdmin();
+        renderResourceInputs();
+        const adminList = document.getElementById('adminList');
+        if (adminList) adminList.innerHTML = '';
+      }
+    });
+
+    window.scrollToId = scrollToId;
+    window.toggleTheme = toggleTheme;
+    window.adminInfo = adminInfo;
+    window.loginAdmin = loginAdmin;
+    window.closeLoginModal = closeLoginModal;
+    window.logoutAdmin = logoutAdmin;
+    window.publishPost = publishPost;
+    window.editPost = editPost;
+    window.cancelEditPost = cancelEditPost;
+    window.deletePost = deletePost;
+    window.addAdmin = addAdmin;
+    window.removeAdmin = removeAdmin;
+    window.saveResources = saveResources;
+    window.addStudyLink = addStudyLink;
+    window.deleteStudyLink = deleteStudyLink;
+    window.addNotice = addNotice;
+    window.editNotice = editNotice;
+    window.cancelEditNotice = cancelEditNotice;
+    window.deleteNotice = deleteNotice;
+    window.removeDefaultUpdate = removeDefaultUpdate;
+    window.filterCards = filterCards;
+  </script>
+</body>
+
 </html>
