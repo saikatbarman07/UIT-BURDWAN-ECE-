@@ -94,7 +94,7 @@
 
           <p>
             Your modern, unified department platform — direct PDF document uploads, verified semester routines,
-            KGEC-style official notice board, and comprehensive study materials in one liquid glass experience.
+            official department notice board, and comprehensive study materials in one liquid glass experience.
           </p>
 
           <div class="actions">
@@ -120,7 +120,7 @@
           <div class="sectionhead-title-wrap">
             <div class="section-eyebrow"><span class="eyebrow-dot lock-dot"></span> SECURE ACCESS</div>
             <h3 class="highlighted-heading">Admin <span class="text-highlight">Control Centre</span></h3>
-            <p id="adminWelcomeMsg">Manage direct PDF document uploads, KGEC notices, routines, and study resources.</p>
+            <p id="adminWelcomeMsg">Manage direct PDF document uploads, department notices, routines, and study resources.</p>
           </div>
 
           <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
@@ -133,7 +133,7 @@
         <!-- Admin Tab Navigation -->
         <div class="admin-tab-nav" role="tablist">
           <button class="admin-tab-btn active" onclick="switchAdminTab('noticesTab')" id="tabBtn-noticesTab">
-            <span>📋</span> Notice Board (KGEC)
+            <span>📋</span> Department Notices
           </button>
           <button class="admin-tab-btn" onclick="switchAdminTab('routinesTab')" id="tabBtn-routinesTab">
             <span>📅</span> Department Routines
@@ -152,13 +152,13 @@
           </button>
         </div>
 
-        <!-- TAB 1: KGEC NOTICES MANAGEMENT -->
+        <!-- TAB 1: DEPARTMENT NOTICES MANAGEMENT -->
         <div class="admin-tab-pane active" id="noticesTab">
           <div class="admin-grid">
             <div class="card">
               <h4 style="margin-top: 0">Publish Official Department Notice</h4>
               <p style="font-size: 13px; color: var(--muted); margin-top: 2px;">
-                Publish circulars with direct PDF uploads or external links, memo numbers, and KGEC-style presentation.
+                Publish circulars with direct PDF uploads or external links, memo numbers, and official circular presentation.
               </p>
 
               <div class="admin-form">
@@ -472,53 +472,80 @@
         <!-- TAB 4: PRIMARY CORE RESOURCES -->
         <div class="admin-tab-pane" id="primaryResTab">
           <div class="card">
-            <h4 style="margin-top: 0">Primary Department Header Documents</h4>
+            <h4 style="margin-top: 0">Rename &amp; Manage Primary Department Header Cards</h4>
             <p style="font-size: 13.5px; color: var(--muted);">
-              Manage the 3 main resource cards displayed prominently on the website. You can upload direct PDF files or keep verified Google Drive links.
+              Customize the title, subtitle/description, and direct PDF or Google Drive links for the 3 main resource cards displayed on the website.
             </p>
 
             <div class="admin-grid" style="margin-top: 16px;">
               <!-- Resource 1: Notices -->
-              <div class="card" style="background: var(--surface2);">
-                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                  <span style="font-size: 20px;">📋</span>
-                  <strong>Department Notices Document</strong>
+              <div class="card" style="background: var(--surface2);" id="editCard-notice">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                  <span style="font-size: 22px;">📋</span>
+                  <strong style="font-size: 15px;">Card 1: Department Notices</strong>
                 </div>
                 <div class="admin-form">
+                  <label style="font-size: 11.5px; font-weight: 750; color: var(--muted); margin-bottom: -4px;">Card Title</label>
+                  <input class="field" id="noticeResourceTitle" placeholder="Card Title (e.g. Department Notices)" />
+
+                  <label style="font-size: 11.5px; font-weight: 750; color: var(--muted); margin-bottom: -4px;">Subtitle / Description</label>
+                  <input class="field" id="noticeResourceDesc" placeholder="Subtitle (e.g. PDF documents)" />
+
+                  <label style="font-size: 11.5px; font-weight: 750; color: var(--muted); margin-bottom: -4px;">Resource Link (Google Drive / URL)</label>
                   <input class="field" id="noticeResourceLink" type="url" placeholder="Google Drive or Document link" />
-                  <div style="font-size: 12px; color: var(--muted); margin-bottom: 6px;">Or upload replacement PDF:</div>
+
+                  <div style="font-size: 12px; color: var(--muted); margin-bottom: 2px;">Or upload replacement PDF:</div>
                   <input type="file" class="field" id="noticeResourceFile" accept=".pdf,application/pdf" />
-                  <button class="ghost" onclick="savePrimaryResource('notice')">Save Notices Resource</button>
+
+                  <button class="primary" onclick="savePrimaryResource('notice')">Save Notices Card</button>
                   <div class="status" id="resStatus-notice"></div>
                 </div>
               </div>
 
               <!-- Resource 2: Study Materials -->
-              <div class="card" style="background: var(--surface2);">
-                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                  <span style="font-size: 20px;">📚</span>
-                  <strong>Study Materials Repository</strong>
+              <div class="card" style="background: var(--surface2);" id="editCard-study">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                  <span style="font-size: 22px;">📚</span>
+                  <strong style="font-size: 15px;">Card 2: Study Materials</strong>
                 </div>
                 <div class="admin-form">
+                  <label style="font-size: 11.5px; font-weight: 750; color: var(--muted); margin-bottom: -4px;">Card Title</label>
+                  <input class="field" id="studyResourceTitle" placeholder="Card Title (e.g. Study Materials)" />
+
+                  <label style="font-size: 11.5px; font-weight: 750; color: var(--muted); margin-bottom: -4px;">Subtitle / Description</label>
+                  <input class="field" id="studyResourceDesc" placeholder="Subtitle (e.g. Notes &amp; question papers)" />
+
+                  <label style="font-size: 11.5px; font-weight: 750; color: var(--muted); margin-bottom: -4px;">Resource Link (Google Drive / URL)</label>
                   <input class="field" id="studyResourceLink" type="url" placeholder="Study Materials Google Drive link" />
-                  <div style="font-size: 12px; color: var(--muted); margin-bottom: 6px;">Or upload replacement PDF:</div>
+
+                  <div style="font-size: 12px; color: var(--muted); margin-bottom: 2px;">Or upload replacement PDF:</div>
                   <input type="file" class="field" id="studyResourceFile" accept=".pdf,application/pdf" />
-                  <button class="ghost" onclick="savePrimaryResource('study')">Save Study Resource</button>
+
+                  <button class="primary" onclick="savePrimaryResource('study')">Save Study Card</button>
                   <div class="status" id="resStatus-study"></div>
                 </div>
               </div>
 
               <!-- Resource 3: Routine -->
-              <div class="card" style="background: var(--surface2);">
-                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                  <span style="font-size: 20px;">📅</span>
-                  <strong>Primary Routine Document</strong>
+              <div class="card" style="background: var(--surface2);" id="editCard-routine">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                  <span style="font-size: 22px;">📅</span>
+                  <strong style="font-size: 15px;">Card 3: Department Routine</strong>
                 </div>
                 <div class="admin-form">
+                  <label style="font-size: 11.5px; font-weight: 750; color: var(--muted); margin-bottom: -4px;">Card Title</label>
+                  <input class="field" id="routineResourceTitle" placeholder="Card Title (e.g. Department Routine)" />
+
+                  <label style="font-size: 11.5px; font-weight: 750; color: var(--muted); margin-bottom: -4px;">Subtitle / Description</label>
+                  <input class="field" id="routineResourceDesc" placeholder="Subtitle (e.g. Latest routine files)" />
+
+                  <label style="font-size: 11.5px; font-weight: 750; color: var(--muted); margin-bottom: -4px;">Resource Link (Google Drive / URL)</label>
                   <input class="field" id="routineResourceLink" type="url" placeholder="Department Routine Google Drive link" />
-                  <div style="font-size: 12px; color: var(--muted); margin-bottom: 6px;">Or upload replacement PDF:</div>
+
+                  <div style="font-size: 12px; color: var(--muted); margin-bottom: 2px;">Or upload replacement PDF:</div>
                   <input type="file" class="field" id="routineResourceFile" accept=".pdf,application/pdf" />
-                  <button class="ghost" onclick="savePrimaryResource('routine')">Save Routine Resource</button>
+
+                  <button class="primary" onclick="savePrimaryResource('routine')">Save Routine Card</button>
                   <div class="status" id="resStatus-routine"></div>
                 </div>
               </div>
@@ -696,7 +723,7 @@
       </section>
 
       <!-- ========================================================= -->
-      <!-- SECTION: NOTICE BOARD (KGEC STYLE) -->
+      <!-- SECTION: NOTICE BOARD -->
       <!-- ========================================================= -->
       <section class="section" id="notices">
         <div class="sectionhead">
@@ -707,7 +734,7 @@
           </div>
         </div>
 
-        <!-- KGEC Notice Filter Bar -->
+        <!-- Notice Filter Bar -->
         <div class="notice-filter-bar">
           <input class="search" id="noticeSearchInput" placeholder="Search notices by title, memo no, or keyword..." oninput="filterNotices()" />
           <div class="category-pill-group">
@@ -1313,7 +1340,7 @@
     }
 
     // -------------------------------------------------------------
-    // SECTION: KGEC-INSPIRED NOTICE BOARD
+    // SECTION: DEPARTMENT NOTICE BOARD
     // -------------------------------------------------------------
     function setNoticeType(type) {
       currentNoticeType = type;
@@ -2382,29 +2409,52 @@
               </div>
             </div>
             ${actionsHtml}
+            ${currentRole ? `
+              <div class="card-admin-actions" style="margin-top: 12px; border-top: 1px solid var(--line); padding-top: 8px;">
+                <button class="ghost edit-btn" style="padding: 4px 10px; font-size: 12px;" onclick="editPrimaryResource('${esc(key)}')">✏️ Rename / Edit Card</button>
+              </div>
+            ` : ''}
           </article>
         `;
       }).join('');
     }
 
+    function editPrimaryResource(key) {
+      switchAdminTab('primaryResTab');
+      const panel = document.getElementById('adminPanel');
+      if (panel) panel.classList.add('open');
+      const cardEl = document.getElementById('editCard-' + key);
+      const titleInput = document.getElementById(key + 'ResourceTitle');
+      if (cardEl) {
+        setTimeout(() => {
+          cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (titleInput) titleInput.focus();
+        }, 120);
+      }
+    }
+
     function renderResourceInputs() {
-      const map = {
-        notice: 'noticeResourceLink',
-        study: 'studyResourceLink',
-        routine: 'routineResourceLink',
-      };
-      Object.entries(map).forEach(([key, id]) => {
-        const el = document.getElementById(id);
-        if (el) el.value = resources[key].link || '';
+      const keys = ['notice', 'study', 'routine'];
+      keys.forEach((key) => {
+        const titleEl = document.getElementById(key + 'ResourceTitle');
+        const descEl = document.getElementById(key + 'ResourceDesc');
+        const linkEl = document.getElementById(key + 'ResourceLink');
+        if (titleEl) titleEl.value = resources[key]?.title || '';
+        if (descEl) descEl.value = resources[key]?.desc || '';
+        if (linkEl) linkEl.value = resources[key]?.link || '';
       });
     }
 
     async function savePrimaryResource(key) {
       if (!currentRole) return openLoginModal();
       const statusId = 'resStatus-' + key;
+      const titleInputId = key + 'ResourceTitle';
+      const descInputId = key + 'ResourceDesc';
       const linkInputId = key + 'ResourceLink';
       const fileInputId = key + 'ResourceFile';
 
+      const titleVal = document.getElementById(titleInputId)?.value.trim() || resources[key].title;
+      const descVal = document.getElementById(descInputId)?.value.trim() || resources[key].desc;
       const linkVal = document.getElementById(linkInputId)?.value.trim() || '';
       const file = document.getElementById(fileInputId)?.files?.[0];
 
@@ -2431,8 +2481,8 @@
 
         const payload = {
           key,
-          title: resources[key].title,
-          description: resources[key].desc,
+          title: titleVal,
+          description: descVal,
           link: finalLink || null,
           storage_path: storagePath || null,
           file_name: fileName || null,
@@ -2441,16 +2491,15 @@
         };
 
         const { error } = await db.from('resources').upsert(payload, { onConflict: 'key' });
-        if (error && error.message?.includes('column')) {
-          await db.from('resources').upsert({
-            key,
-            title: resources[key].title,
-            description: resources[key].desc,
-            link: finalLink || null,
-          }, { onConflict: 'key' });
-        } else if (error) {
-          throw error;
-        }
+        if (error) throw error;
+
+        resources[key].title = titleVal;
+        resources[key].desc = descVal;
+        resources[key].link = finalLink;
+        resources[key].resource_type = resType;
+        if (storagePath) resources[key].storage_path = storagePath;
+        if (fileName) resources[key].file_name = fileName;
+        if (fileSize) resources[key].file_size = fileSize;
 
         setStatus(statusId, 'Saved successfully.');
         const fileInput = document.getElementById(fileInputId);
@@ -2848,6 +2897,7 @@
     window.filterStudyMaterials = filterStudyMaterials;
 
     window.savePrimaryResource = savePrimaryResource;
+    window.editPrimaryResource = editPrimaryResource;
     window.publishPost = publishPost;
     window.editPost = editPost;
     window.cancelEditPost = cancelEditPost;

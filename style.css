@@ -1733,7 +1733,7 @@ body:not(.is-admin) .edit-btn {
 
 
 /* ==========================================================================
-   DIRECT PDF UPLOAD, KGEC NOTICES & RESOURCE MANAGEMENT SYSTEM
+   DIRECT PDF UPLOAD, DEPARTMENT NOTICES & RESOURCE MANAGEMENT SYSTEM
    ========================================================================== */
 
 /* Admin Tabs Navigation */
@@ -2022,7 +2022,7 @@ body:not(.is-admin) .edit-btn {
   accent-color: var(--accent);
 }
 
-/* KGEC Notice Filtering Bar */
+/* Department Notice Filtering Bar */
 .notice-filter-bar {
   display: flex;
   gap: 12px;
@@ -2087,7 +2087,7 @@ body.dark .notice-memo-pill {
   color: #93c5fd;
 }
 
-/* KGEC Notice Action Buttons */
+/* Department Notice Action Buttons */
 .notice-action-row {
   display: flex;
   align-items: center;

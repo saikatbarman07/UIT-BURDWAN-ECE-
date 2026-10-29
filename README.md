@@ -19,8 +19,8 @@ Administrators can choose between two resource types for any item:
 - **Option A: Direct PDF Upload** — Select a PDF file, upload to Supabase Storage, and provide instant "View PDF" and "Download PDF" actions.
 - **Option B: Add External Link** — Keep Google Drive folders, official university links, and external educational portals with an "Open Link" action.
 
-### 3. KGEC-Inspired Department Notice Board
-Inspired by the Kalyani Government Engineering College notice management experience:
+### 3. Official Department Notice Board
+Official department circular and document management system:
 - **Prominent Date Badges**: Day, Month, and Year calendar display.
 - **Department Memo Numbers**: Official reference numbers (e.g. `Memo No. UIT/ECE/2026/042`).
 - **Category Tags & Filtering**: Real-time filtering by category (Notice, Examination, Academic, Routine, Circular).

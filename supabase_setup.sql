@@ -70,7 +70,7 @@ USING (
 );
 
 -- ==============================================================================
--- 3. UPGRADE 'notices' TABLE FOR KGEC-STYLE NOTICE MANAGEMENT
+-- 3. UPGRADE 'notices' TABLE FOR DEPARTMENT NOTICE MANAGEMENT
 -- ==============================================================================
 ALTER TABLE public.notices ADD COLUMN IF NOT EXISTS memo_no text;
 ALTER TABLE public.notices ADD COLUMN IF NOT EXISTS resource_type text DEFAULT 'link';
