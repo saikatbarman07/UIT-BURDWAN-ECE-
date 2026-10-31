@@ -5,9 +5,12 @@
 
 :root {
   color-scheme: light;
-  --font-display: 'Space Grotesk', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Outfit', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display:
+    'Space Grotesk', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading:
+    'Outfit', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body:
+    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Liquid Glass Palette - Light Mode */
@@ -1279,7 +1282,9 @@ body.dark .blob {
   border-radius: 14px;
   background: var(--surface2);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
   min-width: 0;
   width: 100%;
   overflow: hidden;
@@ -1731,7 +1736,6 @@ body:not(.is-admin) .edit-btn {
   }
 }
 
-
 /* ==========================================================================
    DIRECT PDF UPLOAD, DEPARTMENT NOTICES & RESOURCE MANAGEMENT SYSTEM
    ========================================================================== */
@@ -1787,8 +1791,14 @@ body:not(.is-admin) .edit-btn {
 }
 
 @keyframes fadeInPane {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Resource Type Segmented Control */
@@ -2015,7 +2025,7 @@ body:not(.is-admin) .edit-btn {
   margin: 6px 0;
 }
 
-.toggle-label input[type="checkbox"] {
+.toggle-label input[type='checkbox'] {
   width: 18px;
   height: 18px;
   cursor: pointer;
