@@ -96,47 +96,19 @@
           </nav>
         </header>
 
-        <!-- CAMPUS COVER PHOTO BANNER -->
-        <section
-          class="cover-banner-wrap"
-          id="campusCover"
-          aria-label="UIT Burdwan Campus Cover Photo"
-        >
-          <div
-            class="cover-banner-card"
-            onclick="openCoverModal()"
-            title="Click to view full-resolution cover photo"
-            style="cursor: pointer"
-          >
-            <img
-              src="/cover.jpg"
-              alt="UIT Burdwan — University Institute of Technology, The University of Burdwan"
-              class="cover-banner-img"
-              loading="eager"
-              fetchpriority="high"
-            />
-            <div class="cover-banner-overlay"></div>
-            <div class="cover-banner-glow"></div>
-            <div class="cover-banner-badge">
-              <span class="pulsing-radar"></span>
-              <span>UIT Burdwan • The University of Burdwan</span>
-            </div>
-            <button
-              class="cover-expand-btn"
-              aria-label="View full cover photo"
-              onclick="
-                event.stopPropagation();
-                openCoverModal();
-              "
-            >
-              <span>⛶</span> View Full Image
-            </button>
-          </div>
-        </section>
-
-        <!-- 3D LIQUID HERO SECTION -->
-        <section class="hero" id="heroSection">
+        <!-- 3D CINEMATIC UNIFIED HERO SECTION -->
+        <section class="hero" id="heroSection" aria-label="UIT Burdwan Department of ECE Hero">
+          <img
+            src="/cover.jpg"
+            alt="UIT Burdwan Campus — Department of Electronics & Communication Engineering"
+            class="hero-bg-img"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <div class="hero-overlay"></div>
           <div class="hero-glow-orb"></div>
+          <div class="hero-ambient-glow"></div>
+
           <div class="hero-content">
             <div class="eyebrow-container">
               <span class="eyebrow"
@@ -1424,80 +1396,6 @@
           <iframe class="pdf-modal-iframe" id="pdfModalFrame" title="PDF Document Viewer"></iframe>
         </div>
       </div>
-
-      <!-- ========================================================= -->
-      <!-- MODAL: COVER PHOTO VIEWER -->
-      <!-- ========================================================= -->
-      <div
-        class="pdf-modal-backdrop"
-        id="coverPhotoModal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="coverModalHeading"
-      >
-        <div class="pdf-modal-card" style="max-width: 1060px; max-height: 90vh">
-          <div class="pdf-modal-top">
-            <div class="pdf-modal-title-box">
-              <h4 class="pdf-modal-heading" id="coverModalHeading">
-                UIT Burdwan — Campus Cover Photo
-              </h4>
-              <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px">
-                University Institute of Technology, The University of Burdwan
-              </div>
-            </div>
-            <div class="pdf-modal-actions">
-              <a
-                href="/cover.jpg"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-open-link"
-                style="
-                  padding: 6px 12px;
-                  font-size: 12.5px;
-                  text-decoration: none;
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 6px;
-                "
-              >
-                <span>↗</span> Open Full Size
-              </a>
-              <button
-                class="ghost"
-                onclick="closeCoverModal()"
-                style="padding: 6px 12px; font-size: 14px"
-                aria-label="Close photo viewer"
-              >
-                ✕
-              </button>
-            </div>
-          </div>
-          <div
-            style="
-              padding: 12px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              background: #030712;
-              border-radius: 0 0 24px 24px;
-              overflow: hidden;
-            "
-          >
-            <img
-              src="/cover.jpg"
-              alt="UIT Burdwan Campus Cover Photo Full"
-              style="
-                width: 100%;
-                height: auto;
-                max-height: 75vh;
-                object-fit: contain;
-                border-radius: 12px;
-                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-              "
-            />
-          </div>
-        </div>
-      </div>
     </main>
 
     <!-- ========================================================= -->
@@ -1703,28 +1601,11 @@
         document.body.style.overflow = '';
       }
 
-      function openCoverModal() {
-        const modal = document.getElementById('coverPhotoModal');
-        if (modal) {
-          modal.classList.add('open');
-          document.body.style.overflow = 'hidden';
-        }
-      }
-
-      function closeCoverModal() {
-        const modal = document.getElementById('coverPhotoModal');
-        if (modal) {
-          modal.classList.remove('open');
-          document.body.style.overflow = '';
-        }
-      }
-
       // Close modals on escape key or backdrop click
       window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           closePdfModal();
           closeLoginModal();
-          closeCoverModal();
         }
       });
 
@@ -1734,10 +1615,6 @@
 
       document.getElementById('loginModal')?.addEventListener('click', (e) => {
         if (e.target.id === 'loginModal') closeLoginModal();
-      });
-
-      document.getElementById('coverPhotoModal')?.addEventListener('click', (e) => {
-        if (e.target.id === 'coverPhotoModal') closeCoverModal();
       });
 
       // -------------------------------------------------------------
@@ -3886,8 +3763,6 @@
       window.openPdfModal = openPdfModal;
       window.closePdfModal = closePdfModal;
       window.downloadPdf = downloadPdf;
-      window.openCoverModal = openCoverModal;
-      window.closeCoverModal = closeCoverModal;
 
       window.setNoticeType = setNoticeType;
       window.handleNoticeFileSelect = handleNoticeFileSelect;
