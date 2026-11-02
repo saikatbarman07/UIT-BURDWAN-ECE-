@@ -403,11 +403,12 @@ body.dark .blob {
     var(--glass-shadow),
     0 20px 50px rgba(0, 0, 0, 0.4),
     0 0 35px rgba(0, 220, 255, 0.12);
-  min-height: clamp(540px, 72vh, 680px);
+  min-height: clamp(660px, 86vh, 760px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: clamp(32px, 5vw, 56px);
+  padding: 30px clamp(24px, 4vw, 48px) 40px;
+  padding-top: clamp(320px, 38vw, 380px);
   transition:
     box-shadow 0.4s ease,
     border-color 0.4s ease;
@@ -446,12 +447,12 @@ body.dark .blob {
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    rgba(7, 10, 20, 0.08) 0%,
-    rgba(7, 10, 20, 0.2) 20%,
-    rgba(6, 12, 28, 0.65) 45%,
-    rgba(5, 10, 24, 0.92) 68%,
-    rgba(4, 8, 20, 0.98) 90%,
-    #050814 100%
+    rgba(5, 8, 20, 0) 0%,
+    rgba(5, 8, 20, 0) 25%,
+    rgba(5, 8, 20, 0.25) 44%,
+    rgba(5, 8, 20, 0.72) 58%,
+    rgba(4, 7, 18, 0.94) 75%,
+    #040712 100%
   );
 }
 
@@ -598,8 +599,8 @@ body.dark .blob {
 .hero-dept-title {
   margin: 0 0 16px 0;
   font-family: var(--font-heading);
-  font-size: clamp(26px, 4.4vw, 44px);
-  line-height: 1.15;
+  font-size: clamp(23px, 3.4vw, 38px);
+  line-height: 1.18;
   font-weight: 850;
   letter-spacing: -0.02em;
   background: linear-gradient(135deg, #ffffff 0%, #dbeafe 50%, #38bdf8 100%);
@@ -649,8 +650,9 @@ body.dark .blob {
   .hero {
     border-radius: 24px;
     margin-top: 14px;
-    min-height: 490px;
-    padding: 24px 18px;
+    min-height: 640px;
+    padding: 20px 16px 32px;
+    padding-top: clamp(335px, 92vw, 390px);
   }
   .hero-bg-img {
     object-position: center top;
@@ -658,11 +660,12 @@ body.dark .blob {
   .hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(7, 10, 20, 0.12) 0%,
-      rgba(7, 10, 20, 0.35) 20%,
-      rgba(6, 12, 28, 0.78) 42%,
-      rgba(4, 8, 20, 0.96) 65%,
-      #050814 100%
+      rgba(5, 8, 20, 0) 0%,
+      rgba(5, 8, 20, 0) 22%,
+      rgba(5, 8, 20, 0.35) 40%,
+      rgba(5, 8, 20, 0.8) 55%,
+      rgba(4, 7, 18, 0.96) 72%,
+      #040712 100%
     );
   }
   .hero-badge-row {
